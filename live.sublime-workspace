@@ -1,0 +1,1321 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pb",
+				"pbindfs"
+			],
+			[
+				"store",
+				"storeCS2"
+			],
+			[
+				"out",
+				"outChar"
+			],
+			[
+				"~",
+				"~commaCounter"
+			],
+			[
+				"as",
+				"ascii"
+			],
+			[
+				"stor",
+				"storeCS"
+			],
+			[
+				"sto",
+				"storePath"
+			],
+			[
+				"v",
+				"vib"
+			],
+			[
+				"r",
+				"rhodesChorus"
+			],
+			[
+				"rhod",
+				"rhodesVib"
+			],
+			[
+				"rh",
+				"rhodes"
+			],
+			[
+				"rhodes",
+				"rhodesChorus"
+			],
+			[
+				"pd",
+				"pdef	pdef"
+			],
+			[
+				"cho",
+				"choruscompress"
+			],
+			[
+				"co",
+				"choruscompress"
+			],
+			[
+				"t",
+				"tempodefault	TempoClock.default.tempo"
+			],
+			[
+				"st",
+				"storePath"
+			],
+			[
+				"ui",
+				"uidCounter"
+			],
+			[
+				"Sy",
+				"SynthDescLib"
+			],
+			[
+				"di",
+				"distort"
+			],
+			[
+				"py",
+				"pyFunc"
+			],
+			[
+				"fs",
+				"fsKey"
+			],
+			[
+				"cc",
+				"ccFunc"
+			],
+			[
+				"dc",
+				"dictFromArrays"
+			],
+			[
+				"nk",
+				"nkKeyLineArray"
+			],
+			[
+				"q",
+				"quote"
+			],
+			[
+				"toggl",
+				"toggles"
+			],
+			[
+				"wr",
+				"writeToOut"
+			],
+			[
+				"con",
+				"controls"
+			],
+			[
+				"pr",
+				"print"
+			],
+			[
+				"freq",
+				"freqs"
+			],
+			[
+				"bass",
+				"bassGlide2"
+			],
+			[
+				"fr",
+				"fracCut"
+			],
+			[
+				"bassGli",
+				"bassGlide1"
+			],
+			[
+				"glid",
+				"bassGlide1"
+			],
+			[
+				"xplode",
+				"xplode2"
+			],
+			[
+				"in",
+				"inSpecs"
+			],
+			[
+				"speci",
+				"specify"
+			],
+			[
+				"asS",
+				"asSpec"
+			],
+			[
+				"spec",
+				"specifiedProxy"
+			],
+			[
+				"nme",
+				"name"
+			],
+			[
+				"spe",
+				"specifiedProxy"
+			],
+			[
+				"sp",
+				"specDict"
+			],
+			[
+				"isN",
+				"isKindOf"
+			],
+			[
+				"cle",
+				"clearSpecs"
+			],
+			[
+				"fa",
+				"fadeTime"
+			],
+			[
+				"dic",
+				"dictContainsSpec"
+			],
+			[
+				"cont",
+				"ControlSpec"
+			],
+			[
+				"Serv",
+				"Server"
+			],
+			[
+				"set",
+				"setup	setup"
+			],
+			[
+				"se",
+				"setup	setup"
+			],
+			[
+				"frac",
+				"fracDust"
+			],
+			[
+				"pdef",
+				"pdef	pdef"
+			],
+			[
+				"fre",
+				"freq"
+			],
+			[
+				"rout",
+				"routes"
+			],
+			[
+				"val",
+				"valdict"
+			],
+			[
+				"thi",
+				"this"
+			],
+			[
+				"N",
+				"Ndef"
+			],
+			[
+				"cl",
+				"class	Class"
+			],
+			[
+				"Node",
+				"NodeProxy"
+			],
+			[
+				"si",
+				"sizeY"
+			],
+			[
+				"o",
+				"other"
+			],
+			[
+				"pa",
+				"pattern"
+			],
+			[
+				"fmP",
+				"fmPulse"
+			],
+			[
+				"fm",
+				"fmPulseBass"
+			],
+			[
+				"p",
+				"psmp	psmp"
+			],
+			[
+				"pu",
+				"fmPulseBass"
+			],
+			[
+				"imp",
+				"impulseFM"
+			],
+			[
+				"In",
+				"Instr"
+			],
+			[
+				"asr",
+				"asrpeak1"
+			],
+			[
+				"Sin",
+				"SinOsc"
+			],
+			[
+				"panpeak",
+				"panpeak2"
+			],
+			[
+				"s",
+				"set	set"
+			],
+			[
+				"lfp",
+				"lfoSpd"
+			],
+			[
+				"inst",
+				"Instr"
+			],
+			[
+				"im",
+				"impulseFM"
+			],
+			[
+				"cLfo",
+				"cLfoAmp"
+			],
+			[
+				"m",
+				"mPhase"
+			],
+			[
+				"midn",
+				"midinote"
+			],
+			[
+				"c",
+				"crnt	crnt"
+			],
+			[
+				"ke",
+				"keys"
+			],
+			[
+				"pl",
+				"ploop	ploop"
+			],
+			[
+				"do",
+				"doc	do collection"
+			],
+			[
+				"sampler",
+				"samplerM"
+			],
+			[
+				"soun",
+				"sound"
+			],
+			[
+				"sound",
+				"soundFolder"
+			],
+			[
+				"fol",
+				"folderName"
+			],
+			[
+				"sou",
+				"soundFolder"
+			],
+			[
+				"en",
+				"entries"
+			],
+			[
+				"sub",
+				"sub"
+			],
+			[
+				"Env",
+				"env"
+			],
+			[
+				"b",
+				"buf	Buffer.read"
+			],
+			[
+				"Sou",
+				"soundFile"
+			],
+			[
+				"fold",
+				"folder"
+			],
+			[
+				"folder",
+				"folderName"
+			],
+			[
+				"sd",
+				"sdef	sdef"
+			],
+			[
+				"pulse",
+				"pulsescale"
+			],
+			[
+				"n",
+				"ndef	Ndef"
+			],
+			[
+				"dur",
+				"drum"
+			],
+			[
+				"fmPaino",
+				"fmPianoASR"
+			],
+			[
+				"MIDI",
+				"MIDIIn"
+			],
+			[
+				"synth",
+				"synthArgs"
+			],
+			[
+				"syn",
+				"synthData"
+			],
+			[
+				"arg",
+				"synthArgs"
+			],
+			[
+				"En",
+				"Env"
+			],
+			[
+				"Eff",
+				"effect"
+			],
+			[
+				"Syn",
+				"Synth"
+			],
+			[
+				"buf",
+				"bufnum"
+			],
+			[
+				"wav",
+				"waveOscBass"
+			],
+			[
+				"re",
+				"removeFromTree"
+			],
+			[
+				"key",
+				"key"
+			],
+			[
+				"wa",
+				"waveOscBass"
+			],
+			[
+				"~n",
+				"~nkWindowSettings"
+			],
+			[
+				"bfu",
+				"bufpos"
+			],
+			[
+				"bu",
+				"bufEnv"
+			],
+			[
+				"i",
+				"ivars	All Vars"
+			],
+			[
+				"bas",
+				"bassRep"
+			],
+			[
+				"bT",
+				"bStart"
+			],
+			[
+				"tr",
+				"trackh"
+			],
+			[
+				"cla",
+				"class	Class"
+			],
+			[
+				"acc",
+				"accessingClass"
+			],
+			[
+				"effec",
+				"effect"
+			],
+			[
+				"rem",
+				"removeFromTree"
+			],
+			[
+				"add",
+				"addToTree"
+			],
+			[
+				"remo",
+				"removeFromTree"
+			],
+			[
+				"effe",
+				"effect"
+			],
+			[
+				"JD",
+				"JDChild"
+			],
+			[
+				"a",
+				"ascs	asCompileString"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "sketches/live/score0.scd",
+			"settings":
+			{
+				"buffer_size": 2180,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "import os\nimport sys\n\nstoreCS1 = sys.argv[1]\npbindcs = sys.argv[2]\n# storePath = \"/Users/JDMuschett/Live/store/pdefStore.scd\"\n\nprint storeCS1\nprint pbindcs\n\ncommas = 0;\npbindfs = \"\";\n\n# NEW LINE FOR EACH KEY VAL PAIR\nfor char in pbindcs:\n	outchar = char\n	if char==\",\":\n		commas += 1\n		if (commas%2)==0:\n			outchar = char+'\\n'\n			pbindfs +=outchar\n	if outchar==char:\n		pbindfs+=outchar\n\nprint(pbindfs.replace(\"Pbind(\",\"Pbind(\\n\"))\n\n",
+			"file": "store/storeFunc.py",
+			"file_size": 431,
+			"file_write_time": 131172999790000000,
+			"settings":
+			{
+				"buffer_size": 431,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "instruments/osc/rhodes.scd",
+			"settings":
+			{
+				"buffer_size": 1958,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "setup/init.scd",
+			"settings":
+			{
+				"buffer_size": 1711,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "-> 1948\nPdef('thing')\nPbind('instrument', 'some', 'dur', Pseq([ 1 ]))\nPbind(\n'instrument', 'some',\n 'dur', Pseq([ 1 ]))\nRESULT = 0\n",
+			"settings":
+			{
+				"buffer_size": 131,
+				"line_ending": "Unix",
+				"name": "SuperCollider - Post",
+				"scratch": true
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix",
+				"name": "SuperCollider - Post",
+				"scratch": true
+			}
+		},
+		{
+			"file": "Controller/settings.scd",
+			"settings":
+			{
+				"buffer_size": 340,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Controller/storeSettings.scd",
+			"settings":
+			{
+				"buffer_size": 1953,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 187.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"SuperCollider: Start Interpreter"
+			],
+			[
+				"Snippet: ",
+				"Snippet: OSC Trace"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"add",
+				"Package Control: Add Repository"
+			],
+			[
+				"rem",
+				"Package Control: Remove Repository"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			]
+		],
+		"width": 485.0
+	},
+	"console":
+	{
+		"height": 120.0,
+		"history":
+		[
+			"view.run_command(\"example\")",
+			"echo 1",
+			"echo %path%",
+			"echp path"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/JDMuschett/Live",
+		"/Users/JDMuschett/Live/instruments",
+		"/Users/JDMuschett/Live/instruments/bass",
+		"/Users/JDMuschett/Live/instruments/wave"
+	],
+	"file_history":
+	[
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/JDplugins/helloWorld.py",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/JITLib/ProxySpace/ProxyInterfaces.sc",
+		"/Users/JDMuschett/JD_SCExtensions/Extensions/nodeProxyExt.sc",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/JITLib/ProxySpace/NodeProxy.sc",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/JITLib/ProxySpace/ProxySpace.sc",
+		"/Users/JDMuschett/Live/instruments/wave/nwave.scd",
+		"/Users/JDMuschett/Live/instruments/mod/lfo.scd",
+		"/Users/JDMuschett/Live/instruments/fmPulse/nkSetting.scd",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/nks.sublime-snippet",
+		"/usr/local/bin/faust2caqt",
+		"/Users/JDMuschett/Live/Controller/nkTemplateSettings.scd",
+		"/Users/JDMuschett/Live/Controller/classes/NK2/NK2.sc",
+		"/Users/JDMuschett/Live/Controller/nkLayout.py",
+		"/Users/JDMuschett/Live/Controller/pyOutputLayout.py",
+		"/Users/JDMuschett/Live/Controller/nkClearLayout.py",
+		"/Users/JDMuschett/Live/instruments/osc/pulse.scd",
+		"/Users/JDMuschett/Live/instruments/fmPulse/fmPulse.scd",
+		"/Users/JDMuschett/JD_SCExtensions/Extensions/stringExt.sc",
+		"/Users/JDMuschett/Live/instruments/sampler/smp.scd",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Audio/SynthDesc.sc",
+		"/Users/JDMuschett/JD_SCExtensions/Extensions/Faust/supercolliderdir/reverb_designer.sc",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/stp.sublime-snippet",
+		"/Users/JDMuschett/Library/Application Support/SuperCollider/Extensions/SC3plugins/JoshUGens/classes/Class Files/BiquadEQ.sc",
+		"/Users/JDMuschett/JD_SCExtensions/Extensions/extFunction.sc",
+		"/Users/JDMuschett/Library/Application Support/SuperCollider/downloaded-quarks/crucial-library/Instr/Patch.sc",
+		"/Users/JDMuschett/Live/setup/diskout.scd",
+		"/Users/JDMuschett/Live/sketches/live/SuperCollider - Post.sc",
+		"/Users/JDMuschett/Live/Controller/controllerSettings.scd",
+		"/Users/JDMuschett/Live/setup/loadJDSounds.scd",
+		"/Users/JDMuschett/Live/setup/init.scd",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Collections/String.sc",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Control/SystemActions.sc",
+		"/Users/JDMuschett/Live/sketches/live/settings.scd",
+		"/Users/JDMuschett/Live/Controller/settings.scd",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Unix/UnixFILE.sc",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Files/File.sc",
+		"/Users/JDMuschett/Live/sketches/live/bass.scd",
+		"/Users/JDMuschett/Live/setup/instruments/osc/pulse.scd",
+		"/Users/JDMuschett/Live/Controller/functionToScreen.py",
+		"/Users/JDMuschett/Live/sketches/live/pdef.scd",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/nkon.sublime-snippet",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/nkoff.sublime-snippet",
+		"/Users/JDMuschett/Live/sketches/live/score0.scd",
+		"/Users/JDMuschett/Live/setup/instruments/osc/nmap.scd",
+		"/Users/JDMuschett/JD_SCExtensions/Extensions/ArrayContains.sc",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Core/Error.sc",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/JITLib/ProxySpace/NodeMap.sc",
+		"/Users/JDMuschett/Live/sketches/live/ndef.scd",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Streams/Patterns.sc",
+		"/Users/JDMuschett/Live/sketches/rough/nchain.scd",
+		"/Users/JDMuschett/Live/setup/instruments/reverb/JPverb.scd",
+		"/Users/JDMuschett/JD_SCExtensions/Extensions/JDSystemActions.sc",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/JITLib/Patterns/Pdef.sc",
+		"/Users/JDMuschett/Live/sketches/sou/score.scd",
+		"/Users/JDMuschett/Live/setup/instruments/reverb/pchain.scd",
+		"/Users/JDMuschett/JD_SCExtensions/Extensions/PdefExt.sc",
+		"/Users/JDMuschett/Live/setup/instruments/reverb/nchain.scd",
+		"/Users/JDMuschett/JD_SCExtensions/Extensions/arrayContains.scd",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/supercollider-sublime/Default (OSX).sublime-keymap",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/SuperCollider.sublime-keymap",
+		"/Users/JDMuschett/JD_SCExtensions/Extensions/INdef.sc",
+		"/Users/JDMuschett/Live/setup/instruments/fmPulse/nkSetting.scd",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/JITLib/ProxySpace/BusPlug.sc",
+		"/Users/JDMuschett/Live/Controller/NKgui.scd",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Collections/Set.sc",
+		"/Users/JDMuschett/Live/setup/instruments/sampler/smp.scd",
+		"/Users/JDMuschett/Live/sketches/natsu3/rhythm_1.scd",
+		"/Users/JDMuschett/Live/setup/instruments/reverb/reverb.scd",
+		"/Users/JDMuschett/Live/setup/instruments/fmPulse/pdef.scd",
+		"/Users/JDMuschett/Live/setup/instruments/fmPulse/fmPulse.scd",
+		"/Users/JDMuschett/JD_SCExtensions/Extensions/restNum.sc",
+		"/Users/JDMuschett/Live/setup/instruments/mod/lfo.scd",
+		"/Users/JDMuschett/Live/setup/instruments/wave/nwave.scd",
+		"/Users/JDMuschett/Live/setup/instruments/osc/pulse/sine.scd",
+		"/Users/JDMuschett/Live/setup/instruments/sine/sine.scd",
+		"/Users/JDMuschett/Live/setup/instruments/wave/pdef.scd",
+		"/Users/JDMuschett/Live/setup/instruments/fm/fmPulse.scd",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/psmp.sublime-snippet",
+		"/Users/JDMuschett/Live/setup/instruments/fm/pdef.scd",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/pdef.sublime-snippet",
+		"/Users/JDMuschett/Live/setup/instruments/sampler/samplers.scd",
+		"/Users/JDMuschett/Live/setup/instruments/sinef/sine.scd",
+		"/Users/JDMuschett/Live/setup/instruments/fm/nkSetting.scd",
+		"/Users/JDMuschett/Live/setup/instruments/fx.scd",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/env.sublime-snippet",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/pfunc.sublime-snippet",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/setup.sublime-snippet",
+		"/Users/JDMuschett/Live/setup/instruments/fm/pdef.sc",
+		"/Users/JDMuschett/Live/setup/instruments/wave/instr.scd",
+		"/Users/JDMuschett/Live/instr/nwave.scd",
+		"/Users/JDMuschett/Live/setup/ob.scd",
+		"/Users/JDMuschett/Library/Application Support/SuperCollider/downloaded-quarks/crucial-library/Instr/Instr.sc",
+		"/Users/JDMuschett/JD_SCExtensions/Extensions/rsign.sc",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Math/SimpleNumber.sc",
+		"/Users/JDMuschett/Live/setup/instruments/fm/fm.scd",
+		"/Users/JDMuschett/Live/setup/globals.scd",
+		"/Users/JDMuschett/Live/setup/instruments/wave/instr/wv.scd",
+		"/Users/JDMuschett/Live/setup/instruments/bass/bass2.scd",
+		"/Users/JDMuschett/Live/setup/instruments/bass/bass.scd",
+		"/Users/JDMuschett/Live/sketches/instTest.scd",
+		"/Users/JDMuschett/Live/setup/instruments/sine.scd",
+		"/Users/JDMuschett/Live/setup/instruments/wave.scd",
+		"/Users/JDMuschett/Live/setup/fm.scd",
+		"/Users/JDMuschett/Library/Application Support/SuperCollider/downloaded-quarks/crucial-library/Instr/PatchGui.sc",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Core/Object.sc",
+		"/Users/JDMuschett/JD_SCExtensions/Extensions/add_operators.sc",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Audio/Env.sc",
+		"/Users/JDMuschett/Library/Application Support/SuperCollider/Extensions/classes/LiveInput.sc",
+		"/Users/JDMuschett/Live/sketches/natsu4/base.scd",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/apf.sublime-snippet",
+		"/Users/JDMuschett/Live/sources/sketch_1.scd",
+		"/Users/JDMuschett/Live/setup/synthFuncs/bass.scd",
+		"/Users/JDMuschett/Live/setup/synthFuncs/fx.scd",
+		"/Users/JDMuschett/Live/setup/synthFuncs/wave.scd",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/hpf.sublime-snippet",
+		"/Users/JDMuschett/Live/sketches/natsu3/verb.scd",
+		"/Users/JDMuschett/Live/setup/SKETCH_SETUP.scd",
+		"/Users/JDMuschett/Live/sketches/SKETCH_SETUP.scd",
+		"/Users/JDMuschett/Live/master/reverb.scd",
+		"/Users/JDMuschett/Live/effects/fx.scd",
+		"/Users/JDMuschett/Live/setup/synthFuncs/samplers.scd",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/ploop.sublime-snippet",
+		"/Users/JDMuschett/Live/sketches/natsu4/sampleLoop.scd",
+		"/Users/JDMuschett/Live/setup/synthFuncs.scd",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/lb.sublime-snippet",
+		"/Users/JDMuschett/Live/sketches/natsu4/kit.scd",
+		"/Users/JDMuschett/Live/setup/loadJDSounds.sc"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/JDMuschett/Desktop/reCity/sc_osx_standalone-master/citymap/areas",
+			"/Users/JDMuschett/Desktop/reCity/sc_osx_standalone-master/citymap/areas/plans",
+			"/Users/JDMuschett/Desktop/reCity/sc_osx_standalone-master/citymap/areas"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"char",
+			"storeCS2",
+			"asCompileString",
+			"Function",
+			"char",
+			".append(",
+			"second",
+			"ascii",
+			"isPunctuation",
+			"play",
+			"edit",
+			"play",
+			"choruscompress",
+			"rhodesChords",
+			"choruscompress",
+			"play",
+			"SynthControl",
+			"source",
+			"stop",
+			"mix",
+			"lforate",
+			"SynthDef",
+			"stop",
+			"play",
+			"resume",
+			"pause",
+			"stop",
+			"play",
+			"bus",
+			"controlNames",
+			"SinOsc",
+			"choruscompress",
+			"sinosc",
+			"Ndef",
+			"chorus",
+			"gate",
+			"ProxySpace",
+			"all",
+			"Fdef",
+			"stop",
+			"release",
+			"play",
+			"release",
+			"play",
+			"stop",
+			"play",
+			"ProxySpace",
+			"rhodes",
+			"set",
+			"XOut",
+			"everythingrhodes",
+			"ProxySpace",
+			"qmake",
+			"name",
+			"val",
+			"play",
+			"({|",
+			"fader0",
+			"key",
+			"${4",
+			"NK2",
+			"val",
+			"standardizePath",
+			"newFile",
+			"val",
+			"string",
+			"String",
+			"isSpace",
+			"zeroPad",
+			"zeropad",
+			"String",
+			"newFile",
+			"formatStrings",
+			"1",
+			"cc",
+			"makeWindow",
+			"SynthDesc",
+			"FaustReverbDesigner",
+			"faustReverbDesigner",
+			"SynthDescLib",
+			"faustReverbDesigner",
+			"SynthDef",
+			"FaustReverbDesigner",
+			"Reverb_designer",
+			"RegaliaMitraEQ",
+			"EQ",
+			"MidEQ",
+			"play",
+			"stop",
+			"amount",
+			"in",
+			"fracDust",
+			"LPF",
+			"Amplitude",
+			"PitchShift",
+			"distort",
+			"play",
+			"distort",
+			"Function",
+			"Pif",
+			"smp2",
+			"name",
+			"smp",
+			"bufnum",
+			"asGroup",
+			"group",
+			"source",
+			"group",
+			"play",
+			"Ndef",
+			"asGroup",
+			"Patch",
+			"writeInputSpec",
+			"stop",
+			"play",
+			"Ndef(\\thing)",
+			"Ndef(\\thing2)",
+			"val",
+			"stopRec",
+			"beginRec",
+			"stopR",
+			"beginR",
+			"stopR",
+			"beginR",
+			"unixCmd",
+			"NK2",
+			"silence:true",
+			"String"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"(\"PREDICTED DISTORTION LEVEL: \"+ (100.0.rand).asString +\"%.\").postln;",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "/Users/JDMuschett/Live"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "sketches/live/score0.scd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2180,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2096,
+								2096
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SuperCollider/SuperCollider.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 885.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "store/storeFunc.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 431,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								44,
+								44
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "instruments/osc/rhodes.scd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1958,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1603,
+								1603
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/SuperCollider/SuperCollider.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "setup/init.scd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1711,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								609,
+								609
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SuperCollider/SuperCollider.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 227.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 131,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								131,
+								131
+							]
+						],
+						"settings":
+						{
+							"line_numbers": false,
+							"rulers": 0,
+							"syntax": "Packages/SuperCollider/SuperCollider.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"line_numbers": false,
+							"rulers": 0,
+							"syntax": "Packages/SuperCollider/SuperCollider.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 6,
+					"file": "Controller/settings.scd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 340,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								60,
+								60
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SuperCollider/SuperCollider.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "Controller/storeSettings.scd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1953,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								28,
+								32
+							],
+							[
+								83,
+								87
+							],
+							[
+								130,
+								134
+							],
+							[
+								166,
+								170
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SuperCollider/SuperCollider.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				2
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			],
+			[
+				1,
+				1,
+				2,
+				2
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.529503633034,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			0.336378128961,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Xcode Build",
+	"project": "",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": false,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 1,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 179.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

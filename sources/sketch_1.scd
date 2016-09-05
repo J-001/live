@@ -18,10 +18,7 @@ SynthDef(\synth1, {|out=0,freq=262,carRatio=1,modRatio1=1,modRatio2=1,index1=1,i
 	car = SinOsc.ar((newFreq*carRatio)+mod1+mod2);
 
 	// car=car*EnvGen.kr(Env.asr(0.01,1,0.01),gate,doneAction:2);
-	car=car*EnvGen.kr(Env.perc(0.01,1,0.01),gate,doneAction:2);
-
-
-
+	car=car*EnvGen.kr(Env.perc(0.01,1,0.01),gate,doneAction:0);
 	Out.ar(out,Splay.ar(car)*amp*0.15);
 }).add;
 
@@ -184,91 +181,6 @@ Pdef(\summer).play
 Pdef(\summer).stop
 
 //-----------------------------------------------------------------------------------------
-//SYNTH 2
+//SYNTH 
 
-SynthDef(\synth2, {|
-	out=0,
-	freq=220,
-	carRatio=2,modRatio=5,index=1,
-	rel=0.2,
-	amp=1,gate=1,
-	lforate=20|
-	var car,mod;
-	var sustainCar;
-	var attackEnv;
-	var mainEnv;
-	var freqs;
-	var lfo1;
-
-	freqs = Lag.kr(freq,0.1)*[0.99,1,1.01];
-
-	attackEnv = EnvGen.kr(Env([0,1,0],[0.01,0.99]*0.2,[2,-2]),Impulse.kr(300),doneAction:0);
-	mod=SinOsc.ar(freqs*modRatio,0,freqs*index);
-	car = SinOsc.ar((freqs*carRatio) + mod);
-	
-	car = car*attackEnv*0.1;
-
-	/*Adds sustained tone after attack*/
-	// sustainCar = SinOsc.ar(freqs);
-	// car=car+sustainCar;
-
-	// mainEnv = EnvGen.kr(Env([0,1,0],[0.99,0.01]*10),gate,doneAction:0);
-	mainEnv=EnvGen.kr(Env.asr(0.3,1,0.1),gate,doneAction:2);
-	car=car*mainEnv;
-
-	lfo1 = SinOsc.kr(lforate);
-	car = Splay.ar(car)*lfo1;
-	Out.ar(out,car*amp);
-	
-}).add;
-
-
-
-~ahMelody = ~melody.(8,Scale.aeolian.degrees);
-
-
-Pdef(\ah,
-Pmono(
-	\synth2,
-	\midinote,Pseq(Scale.aeolian.degrees,inf)+60+Pseq({(0..3).choose}!4,inf),
-	\amp,Pwhite(2,3),
-	\legato,1,
-	\dur,Pseq((0.125!6)++([0.5].choose!1),inf)
-		)
-)
-
-Pdef(\ah2,
-Pmono(
-	\synth2,
-	\midinote,Pseq([Pseq(Scale.aeolian.degrees[0..5],1),Prand([0,3,7,10],1)],1)+120,
-	\amp,Pwhite(2,3),
-	\legato,1,
-	\dur,Pseq((0.125!6)++([0.5].choose!1),inf)
-		)
-)
-
-Pseq([Pdef(\ah2),Pdef(\ah)],inf).play
-
-
-
-
-
-Pdef(\ah).quant=4;
-Pdef(\ah).play;
-Pdef(\ah).stop;
-
-
-Pdef(\ah2).quant=4;
-Pdef(\ah2).play;
-Pdef(\ah2).stop;
-
-
-
-
-
-
-
-
-
-
-	
+u.fmImpulse

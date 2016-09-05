@@ -33,5 +33,3 @@ phraseDur= durStream.nextN(length)*0.125;
 	[melodicPhrase,phraseDur]
 }
 
-
-

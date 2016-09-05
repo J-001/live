@@ -31,10 +31,10 @@ SynthDef("electricPiano", { |
 
 	car = FreeVerb.ar(car,0.5,0.8,0.95);
 	// car = Pan2.ar(car,SinOsc.kr(4).range(-1,1));
-
+	car = car*amp;
 	DetectSilence.ar(car,doneAction:2);
 
-	Out.ar(out,car*amp);
+	Out.ar(out,car);
 }).add;
 
 //----------------------------------------------------------------------------
@@ -69,15 +69,16 @@ MIDIdef.noteOff(\noteOff, {|val, num, chan, src|
 //----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 
-~scale = Scale.choose.degrees;
+~scale = Scale.harmonicMinor;
+~scale.tuning_(\partsch);
 ~octaves = 5;
-~fundOct = 3;
+~fundOct = 2;
 
 ~arp=({|oct| 
 	var currentOctave;
 	currentOctave = ((oct+~fundOct)*12);
 
-	currentOctave+~scale;
+	currentOctave+~scale.degrees;
 
 	}!~octaves).flat;
 
@@ -85,13 +86,14 @@ MIDIdef.noteOff(\noteOff, {|val, num, chan, src|
 
 Pdef(\sweep,
 	Pbind(\instrument,\electricPiano,
-	\amp,0.5,
-	\midinote, Pseq(~arp),
-	\dur,0.05);
+	\amp,Pwhite(0.0,0.5),
+	\midinote, Pxrand(~arp,inf),
+	\dur,0.125);
 );
 
-Pdef(\sweep).quant=1;
+Pdef(\sweep).quant=0.5;
 Pdef(\sweep).play;
+Pdef(\sweep).stop;
 
 //----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
@@ -103,7 +105,7 @@ Pdef(\harmonics,
 	\midinote, 
 	Pseq(
 		[Pseq([Pseq(~arp[0]!16),Pseq(~arp[1..4])],3),
-				Pseq({\rest}!20,1)],3
+				Pseq({\rest}!20,1)],10
 		),
 	\dur,Prand((1..2)*0.125,inf)
 	)
