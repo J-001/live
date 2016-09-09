@@ -1,11 +1,10 @@
+n['knob0'].cc_({|val| ~romance.sm(\rate, val,\lfo)});
+n['s0'].on_({ ~romance.play});
+n['s0'].off_({ ~romance.stop});
 
 
 
-n['s3'].on_({ Ndef(\name).play});
-n['s3'].off_({ Ndef(\name).play});
 
-n['s4'].on_({ Ndef(\radioNoise).trig;});
-n['s4'].off_({ Ndef(\radioNoise).rel;});
 
 
 

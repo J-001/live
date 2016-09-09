@@ -4,6 +4,10 @@ var clips;
 var loops;
 var dir, loopDir;
 
+b[\load] = {
+		"~/Live/setup/loadJDSounds.scd".standardizePath.loadPaths;
+	};
+// LOAD SOUNDS
 if(b.notNil,{
 		b.do{|sub|
 				sub.do{|soundFolder|
@@ -13,8 +17,6 @@ if(b.notNil,{
 				};
 			};
 	});
-
-b=();
 
 dir = "~/JDSounds/clip".standardizePath;
 // CLIPS
@@ -41,7 +43,7 @@ clips.entries.do{|folder|
 		}
 	}
 };
-
+// DRUMS SHORTCUT
 b[\drums] = {
 	{|...drum|
 		var arr;

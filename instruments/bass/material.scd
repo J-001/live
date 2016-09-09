@@ -2,6 +2,7 @@
 //-----------------------------------------------------------------------
 // syncBass
 //root
+
 Pdef(\syncBassRoot,
 	Pbind(
 		\instrument, \bass,
@@ -12,6 +13,7 @@ Pdef(\syncBassRoot,
         \type, Pfunc{|e| if (e.rel<=1) {\on} {\note}};
 	)
 );
+
 //end
 Pdef(\syncBassEnd, 
 	Pbind(
@@ -25,7 +27,7 @@ Pdef(\syncBassEnd,
 			 	Ptuple([Pseq([100,200,120],3), Pseq([1],3)])
 		 	])
 	)
-)
+);
 //combos in Main
 Pdef(\syncBass, 
 	Pseq([
@@ -34,9 +36,3 @@ Pdef(\syncBass,
 	],inf)
 );
 //-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-
-n[\s3].on_({ Ndef(\name).play});
-n[\s3].off_({ Ndef(\name).play});
-
-

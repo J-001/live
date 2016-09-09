@@ -2,12 +2,15 @@
 //-----------------------------------------------------------------------
 (
 	
-	/*
-	s.options.inDevice_("UPHORIA 404");
-	s.options.outDevice_("UPHORIA 404");
-	s.options.sampleRate_(192000);
-	s.reboot;
-	*/
+	//SET UPHORIA as AUDIO DEVICE
+	if (ServerOptions.devices.contains("UMC404HD 192k")) {
+		s.options.inDevice_("UMC404HD 192k");
+		s.options.outDevice_("UMC404HD 192k");
+		// s.options.outDevice_(nil);
+		s.options.sampleRate_(192000 * 0.5);
+		s.reboot;
+	};
+	
 
 	(s.options.memSize == (65536 * 4)).if(
 		{"Enough Memory".postln},
@@ -27,6 +30,11 @@
 	i[\load] = {|function ... names|
 		names.do{|name|
 			("~/Live/instruments/".standardizePath++name.asString++"/inst.scd").loadPaths; 
+			}
+	};
+	i[\mat] = {|function ... names|
+		names.do{|name|
+			("~/Live/instruments/".standardizePath++name.asString++"/material.scd").loadPaths; 
 			}
 	};
 	f = ();
@@ -51,7 +59,7 @@
 	//SPECS
 	Spec.add(\legato, ScalarSpec(0.001, 10, \linear, 0, 1));
 	Spec.add(\dur, ScalarSpec(0.001, 1000, \linear, 0, 1));
-	Spec.add(\lfospd, [0.001, 20, \linear, 0]);
+	Spec.add(\lfo, [0.001, 20, \linear, 0]);
 	Spec.add(\rate, [-1000, 1000, \linear, 0,1]);
 	Spec.add(\done, ScalarSpec([0,14, \linear, 1,2]));
 	//EFFECTS
@@ -73,7 +81,7 @@
 
 	//GUIS
 
-	(s.serverRunning==false).if({s.plotTree});
+	// (s.serverRunning==false).if({s.plotTree});
 )
 //----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
@@ -100,5 +108,4 @@ k['dreamverb'] !? {k[\dreamverb].do(_.clear); k[\dreamverb] = Ndef(\dreamverb).k
 k.dreamverb['list'] = {Ndef('dreamverb').getKeysValues.do{|i|i[0].postln}};
 
 */
-
 

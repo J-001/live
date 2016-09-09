@@ -1,7 +1,7 @@
-n['knob0'].cc_({|val| });
+n['knob0'].cc_({|val| ~romance.sm(\rate, val,\lfo)});
 n['fader0'].cc_({|val|});
-n['s0'].on_({  });
-n['s0'].off_({  });
+n['s0'].on_({ ~romance.play});
+n['s0'].off_({ ~romance.stop});
 n['m0'].on_({  });
 n['m0'].off_({  });
 n['r0'].on_({  });
@@ -27,8 +27,8 @@ n['r2'].off_({ });
 
 n['knob3'].cc_({|val| });
 n['fader3'].cc_({|val|});
-n['s3'].on_({ Ndef(\name).play});
-n['s3'].off_({ Ndef(\name).play});
+n['s3'].on_({ });
+n['s3'].off_({ });
 n['m3'].on_({ });
 n['m3'].off_({ });
 n['r3'].on_({ });
@@ -36,8 +36,8 @@ n['r3'].off_({ });
 
 n['knob4'].cc_({|val| });
 n['fader4'].cc_({|val|});
-n['s4'].on_({ Ndef(\radioNoise).trig;});
-n['s4'].off_({ Ndef(\radioNoise).rel;});
+n['s4'].on_({ });
+n['s4'].off_({ });
 n['m4'].on_({ });
 n['m4'].off_({ });
 n['r4'].on_({ });

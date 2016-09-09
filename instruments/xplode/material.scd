@@ -8,7 +8,7 @@ Pdef(\xplodeBomb,
         \amp, 1,
         \mix, 1,
         \detune, 0.001,
-        \dur , 4,
+        \dur , 16,
         \rel, Pfunc{|e| e.dur * e.legato * rrand(0.99,1.0)},
         \pan, Pwhite(-1.0, 1.0),
         \type, Pfunc{|e| if (e.rel<=1) {\on} {\note}};
