@@ -1,11 +1,14 @@
 SymbolConverter {
 
 	classvar <>extConvFuncs; //Used by Symbol
-	classvar <>inConvFuncs; //Used by 
-	classvar <>defaultConvFunc;
+	classvar <>defaultConvFunc;// Default Ndef
+	classvar <>inputConvFuncs;
+	classvar <>methodConvFunc;
 
 	*initClass { 
 		extConvFuncs = ();
+		inputConvFuncs = ();
+		methodConvFunc = ();
 		defaultConvFunc = {|symbol| Ndef(symbol) };
 
 		//SymbolCallback - Doesn't work in Pdef for some reason
@@ -18,6 +21,14 @@ SymbolConverter {
 
 	*addExtConvFunc {|aType, aFunc|
 		extConvFuncs[aType] = aFunc;
+	}
+
+	*addinputConvFunc {|aType, aFunc|
+		inputConvFuncs[aType] = aFunc;
+	}
+
+	*addMethodConvFunc{|aMethod, aFunc|
+		methodConvFunc[aMethod] = aFunc;
 	}
 	
 }
@@ -49,6 +60,20 @@ SymbolConverter {
 		};
 
 		^self;
+	}
+
+	checkInput {|method ... input|
+
+		var funcs = SymbolConverter.inputConvFuncs[method.asSymbol];
+		if(funcs.isNil) {^nil};
+		if (funcs[\test].(*input)) {
+			var str = this.asString;
+			var strlen = str.size;
+			var root = str[0 .. strlen - 3].asSymbol;
+			funcs[\typewrap].(root)
+		};
+
+		^nil
 	}
 //-----------------------------------------------------------------------
 //-----------------ROUTING-----------------------------------------------
@@ -133,10 +158,10 @@ SymbolConverter {
 	//
 	@ {|obj, at = 0|  
 		var self = this.selfType;
-
 		if (obj.isArray) {
 			self = this.asP;
 		};
+		self =  this.checkInput('@', obj, at) ? self;		
 		self.perform('@', obj, at)
 	} 
 	//Copy
@@ -224,6 +249,10 @@ SymbolConverter {
 	asN { 
 		var self = this.selfType;
 		^self;
+	}
+
+	asL {
+		^LiveInput(this)
 	}
 //-----------------------------------------------------------------------
 //-------------------------PATTERN STUFF---------------------------------

@@ -14,7 +14,7 @@ b[\beginRec] = {
 b[\stopRec] = {
 	"BEGINNING ENDING".postln;
 	~diskout.free;
-	b.close;
+	b.disk.close;
 	b.disk.free;
 };
 

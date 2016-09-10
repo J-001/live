@@ -1,4 +1,9 @@
 //LOADS SOUNDS FILES INTO BUFFERS
+/*
+TO DO: Write This up Into Class : BufferLib
+
+Tempo Info
+*/
 (
 var clips;
 var loops;
@@ -80,5 +85,8 @@ loops.entries.do{|tempo|
 
 	}
 }
+
+//LiveInput Recordings
+b[\live] = LiveInput.recordings
 
 )

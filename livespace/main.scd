@@ -355,8 +355,24 @@ Fdef(\freq, {|freq = 60| freq})
 
 "~/Live/setup/init.scd".loadPaths
 
+s.boot;
+s.plotTree;
 LiveInput(\zeplin, 0);
-\zeplin_L.play
+LiveInput(\zeplin).startRecording(\rec,2);
+LiveInput(\zeplin).timedRecording(\rec3, 4);
+LiveInput(\zeplin).stopRecording
+
+\zeplin.rec(\tRec, 4)
+
+\zeplin.buf(\tRec)
+
+b = ()
+
+
+
+b.live.zeplin.do(_.postln)
+	}
+
 \zeplin_N<<.amp{|freq = 10| SinOsc.kr(freq).linlin(-1,1,0,1)}
 
 \zeplin_N.p@{|amp = 0.1|SinOsc.ar * amp}
@@ -367,8 +383,20 @@ LiveInput.all
 Ndef(\zeplin, {|amp = 1|SoundIn.ar(0) * amp})
 {SoundIn.ar(0)}.play
 
+Ndef.clear
+\zeplin_L@0
+LiveInput(\zeplin).channelsArray
+LiveInput(\zeplin).p
+LiveInput.all.clear
 
-s.options.inDevice
-l.name;
+
+
+
+
+
+
+
+
+
 
 
