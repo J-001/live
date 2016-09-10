@@ -356,10 +356,15 @@ Fdef(\freq, {|freq = 60| freq})
 "~/Live/setup/init.scd".loadPaths
 
 LiveInput(\zeplin, 0);
+\zeplin_L.play
+\zeplin_N<<.amp{|freq = 10| SinOsc.kr(freq).linlin(-1,1,0,1)}
 
-
+\zeplin_N.p@{|amp = 0.1|SinOsc.ar * amp}
+\zeplin.amp_(0.1)
+\zeplin.amp_(0.05)
+Ndef(\zeplin).amp_(0.2)
 LiveInput.all
-
+Ndef(\zeplin, {|amp = 1|SoundIn.ar(0) * amp})
 {SoundIn.ar(0)}.play
 
 

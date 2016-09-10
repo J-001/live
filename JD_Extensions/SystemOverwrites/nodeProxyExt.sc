@@ -62,6 +62,7 @@
 					if (instance.class==Symbol) { 
 						instance.asN.set(key, valSource);
 					} {
+						instance.class.postln;
 						instance.set(key, valSource);
 					};
 				};
@@ -82,12 +83,12 @@
 			if (inProxy.isNil) { inProxy = NodeProxy.audio() };
 			this <<> inProxy;
 		};
-
+		//this
 		this.prAddControlMethods(this, this.controlProxies, this.controlKeysValues);
-
+		//Symbols
 		if(this.class==Ndef) {
 			var symbolWithExtU = (this.key++'_N').asSymbol;
-			var symbolWithExtL = (this.key++'_n').asSymbol;
+			var symbolWithExtL = (this.key++'_n').asSymbol;			
 			this.prAddControlMethods( symbolWithExtU, this.controlProxies, this.controlKeysValues);
 			this.prAddControlMethods( symbolWithExtL, this.controlProxies, this.controlKeysValues);
 			this.prAddControlMethods( this.key, this.controlProxies, this.controlKeysValues);
@@ -98,8 +99,8 @@
 		var args = aArgs;
 		//converts Function Input to nroxy
 		(args.size * 0.5).asInteger.do{|i|
-			var key = args[i + 0].postln;
-			var val = args[i + 1].postln;
+			var key = args[i + 0];
+			var val = args[i + 1];
 			args[i + 1] = this.functionToProxy(key, val);
 		};
 
@@ -362,8 +363,12 @@
 			this.nd.filter( index, obj);
 			^this.nd[index]
 		};
-
-		this[index] = obj;
+		if (at==0) {
+			this.source_(obj)
+		} {
+			this[index] = obj
+		};
+		
 	}
 	//-----------------------------------------------------------------------
 	//-----------------------------------------------------------------------
@@ -434,7 +439,7 @@
 		all = ();
 		//ADDED SYMBOL CONVERTER CALLLBACK
 		['_N','_n'].do{|ext|
-			SymbolConverter.addTypeExt(ext, {|symbol|
+			SymbolConverter.addExtConvFunc(ext, {|symbol|
 			 	Ndef(symbol);
 			})
 		}

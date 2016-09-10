@@ -1,59 +1,33 @@
 SymbolConverter {
 
-	classvar <>typeFuncs;
+	classvar <>extConvFuncs; //Used by Symbol
+	classvar <>inConvFuncs; //Used by 
 	classvar <>defaultConvFunc;
 
 	*initClass { 
-		typeFuncs = ();
+		extConvFuncs = ();
 		defaultConvFunc = {|symbol| Ndef(symbol) };
 
 		//SymbolCallback - Doesn't work in Pdef for some reason
 		['_P','_p'].do{|ext|
-			SymbolConverter.addTypeExt(ext, {|symbol|
+			SymbolConverter.addExtConvFunc(ext, {|symbol|
 			 	Pdef(symbol);
 			})
 		};
 	}
 
-	*new {
-		^super.new.init;
+	*addExtConvFunc {|aType, aFunc|
+		extConvFuncs[aType] = aFunc;
 	}
-
-	init {
-		
-	}
-
-	*addTypeExt {|aType, aFunc|
-		typeFuncs[aType] = aFunc;
-	}
-
 	
 }
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 + Symbol {
-
-	// checkExt {
-	// 	var str = this.asString;
-	// 	var strlen = str.size;
-	// 	var ext = str[strlen-2 .. strlen-1];
-	// 	var root = str[0 .. strlen - 3].asSymbol;
-	// 	// strlen.postln;
-	// 	if (ext=="_P" or: ext=="_p") {
-	// 		^root.asP.postln;
-	// 	};
-	// 	if (ext=="_N" or: ext=="_n") {
-	// 		^root.asN.postln;
-	// 	};
-	// 	if (ext=="_X" or: ext=="_x") {
-	// 		^currentEnvironment[root].postln;
-	// 	};
-	// 	^nil;
-	// }	
-
+	
 	checkExt {
-		SymbolConverter.typeFuncs.pairsDo{| key, typeWrapFunc| 
+		SymbolConverter.extConvFuncs.pairsDo{| key, typeWrapFunc| 
 			var str = this.asString;
 			var strlen = str.size;
 			var ext = str[strlen-2 .. strlen-1];
@@ -159,6 +133,7 @@ SymbolConverter {
 	//
 	@ {|obj, at = 0|  
 		var self = this.selfType;
+
 		if (obj.isArray) {
 			self = this.asP;
 		};
@@ -246,7 +221,10 @@ SymbolConverter {
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-	asN { ^Ndef(this) }
+	asN { 
+		var self = this.selfType;
+		^self;
+	}
 //-----------------------------------------------------------------------
 //-------------------------PATTERN STUFF---------------------------------
 	asP_ {|obj|
