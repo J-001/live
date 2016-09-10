@@ -353,26 +353,17 @@ s.meter
 Fdef(\freq, {|freq = 60| freq})
 
 
+"~/Live/setup/init.scd".loadPaths
 
-Ndef(\freq, {|amp = 0.1,freq=100| amp * SinOsc.ar(freq.lag(0.1))});
-Ndef(\freq).set(\freq,{|val = 10| SinOsc.kr(val).linlin(-1,1,20,1000)})
-
-Ndef(\freq).controlProxies;
-\freq.p
-\freq.asN.k_freq_(100)
-\freq.asN.k_freq_(\val,0.2)
-\freq.asN.freq_(200)
-\freq.asN.freq = 100
-\freq.asN.freq.set(\val,2)
-\freq.asN.clear(1)
-\freq.asN.controlProxies.freq.bus
-\freq_N.k_freq_(\val,1)
+LiveInput(\zeplin, 0);
 
 
+LiveInput.all
+
+{SoundIn.ar(0)}.play
 
 
-
-
-
+s.options.inDevice
+l.name;
 
 

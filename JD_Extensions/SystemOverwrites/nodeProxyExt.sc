@@ -88,7 +88,6 @@
 		if(this.class==Ndef) {
 			var symbolWithExtU = (this.key++'_N').asSymbol;
 			var symbolWithExtL = (this.key++'_n').asSymbol;
-			symbolWithExt.postln;
 			this.prAddControlMethods( symbolWithExtU, this.controlProxies, this.controlKeysValues);
 			this.prAddControlMethods( symbolWithExtL, this.controlProxies, this.controlKeysValues);
 			this.prAddControlMethods( this.key, this.controlProxies, this.controlKeysValues);
@@ -121,13 +120,9 @@
 			if (this.class==Ndef) {
 				^typedInput = Ndef(input);
 			};
-			if (currentEnvironment.isProxySpace) {
-				if (currentEnvironment.type=='nType') {
-					^typedInput = Ndef(input);
-					} {
-					^typedInput = currentEnvironment[input];
-				};
-			};
+			// if (currentEnvironment.isProxySpace) {
+			// 	^typedInput = currentEnvironment[input];
+			// };
 		} {
 			^typedInput = input;
 		};
@@ -148,7 +143,9 @@
 			if(self.inProxy.isNil) {
 			 	self.inProxy = NodeProxy.audio().fadeTime_(self.fadeTime);
 			};
-			self.inProxy[input.generateUniqueName.asSymbol] ?? {self.inProxy[input.generateUniqueName.asSymbol] = {input.ar} };
+			self.inProxy[input.generateUniqueName.asSymbol] ?? {
+				self.inProxy[input.generateUniqueName.asSymbol] = {input.ar} 
+			};
 			// ADD THE IN_PROXY TO THE LIST OF YHE INPUT's OUTPUT's
 			// SO CAN BE CLEARED 
 			input.destProxies.add(self.inProxy);
@@ -433,6 +430,16 @@
 
 + Ndef {
 
+	*initClass { 
+		all = ();
+		//ADDED SYMBOL CONVERTER CALLLBACK
+		['_N','_n'].do{|ext|
+			SymbolConverter.addTypeExt(ext, {|symbol|
+			 	Ndef(symbol);
+			})
+		}
+	}
+
 	persist {|bool|
 		bool.if({
 			ServerTree.put({this.play}, this.key);
@@ -445,250 +452,6 @@
 	
 }
 
-//SYMBOL NDEF SHORTHAND
-+ Symbol {
-
-	checkExt {
-		var str = this.asString;
-		var strlen = str.size;
-		var ext = str[strlen-2 .. strlen-1];
-		var root = str[0 .. strlen - 3].asSymbol;
-		strlen.postln;
-		if (ext=="_P" or: ext=="_p") {
-			^root.asP.postln;
-		};
-		if (ext=="_N" or: ext=="_n") {
-			^root.asN.postln;
-		};
-		if (ext=="_X" or: ext=="_x") {
-			^currentEnvironment[root].postln;
-		};
-		^nil;
-	}	
-
-	selfType {
-		//default 
-		var self = Ndef(this);
-
-		if (this.checkExt.notNil) {
-			^this.checkExt;
-		};
-
-		if (currentEnvironment.isProxySpace) {
-			if (currentEnvironment.type == 'nType') {
-				"ntype".postln;
-				self = Ndef(this);
-			};
-			if (currentEnvironment.type == 'pType'){
-				"ptype".postln;
-				self = currentEnvironment[this];
-			};
-		};
-		^self;
-	}
-//-----------------------------------------------------------------------
-//-----------------ROUTING-----------------------------------------------
-	//RETURN INPUT
-	<<> {| proxy, key = \in |
-		var self = this.selfType;
-		self.perform('<<>', self, key)
-	}
-
-	<>> {| proxy, key = \in |
-		var self = this.selfType;
-		self.perform('<>>', self, key)
-	}
-	//RETURN ORIGINAL
-	<< { | proxy, key = \in |
-		var self = this.selfType;
-		self.perform('<<', self, key)
-	}
-
-	>> { | proxy, key = \in |
-		var self = this.selfType;
-		self.perform('>>', self,  key)
-	}
-
-	rm {|aProxy|
-		var self = this.selfType;
-		self.rm(aProxy)
-	}
-//--------------NODE CONTROLS--------------------------------------------
-//-----------------------------------------------------------------------
-	rel { | releaseTime = 1 |
-		var self = this.selfType;
-		self.rel(releaseTime ) 
-	}
-
-	trig { | attackTime = 0.01 |
-		var self = this.selfType;
-		self.trig( attackTime ) 
-	}
-
-	clear { |fadeTime|
-		var self = this.selfType;
-		self.clear( fadeTime ) 
-	}
-//-----------------------------------------------------------------------
-//---------------SPEC PROXIES--------------------------------------------
-	//shorthand - specMap
-	sm {|key, val, aSpec|
-		var self = this.selfType;
-		self.specMap(key, val, aSpec) 
-	}
-
-	specMap {|key, val, aSpec|
-		var self = this.selfType;
-		self.specMap(key, val, aSpec) 
-	}
-	clearSpecs {|fadeTime = 0.2|
-		var self = this.selfType;
-		self.clearSpecs(fadeTime) 
-	}
-
-	specify {|aSpec|
-		var self = this.selfType;
-		self.specify(aSpec) 
-	}
-
-	specifyN {|aSpecs|
-		var self = this.selfType;
-		self.specifyN(aSpecs) 
-	}
-//-----------------------------------------------------------------------
-//------------------VARIANTS---------------------------------------------
-	variant_ {|key ... kvPairs|
-		var self = this.selfType;
-		self.variant_(key, *kvPairs) 
-	}
-
-	variant {|key|
-		var self = this.selfType;
-		self.variant(key) 
-	}
-	//
-	@ {|obj, at = 0|  
-		var self = this.selfType;
-		if (obj.isArray) {
-			self = this.asP;
-		}
-		self.perform('@', obj, at)
-	} 
-	//Copy
-	|+ {|extension, attachPoint = 'front'|
-		var self = this.selfType;
-		self.perform('|', attachPoint, extension) 
-	} 
-	| {|newName, attachPoint = 'front'|
-		var self = this.selfType;
-		self.perform('|', attachPoint, newName) 
-	} 
-
-//-----------------------------------------------------------------------
-//-----------------SET---------------------------------------------------
-	ust {|...setArgs|
-		var self = this.selfType;
-		self.unset(setArgs)
-	}
-	st {|...setArgs|
-		var self = this.selfType;
-		self.set(setArgs)
-	}
-//-----------------------------------------------------------------------
-//---------------PLAY CONTROLS-------------------------------------------
-	//PLAY
-	play { 
-		var self = this.selfType;
-		self.play;
-		^self;
-	}
-	p {  this.play }
-
-	stop { 
-		var self = this.selfType;
-		self.stop;
-		^self;
-	}
-	s { this.stop }
-
-	clear {|fadeTime=0.1| 
-		var self = this.selfType;
-		self.clear(fadeTime);
-		^self;
-	}
-	c {|fadeTime| this.clear(fadeTime) }
-
-	rel {
-		var self = this.selfType;
-		self.rel;
-		^self;
-	}
-	r {this.rel}
-
-	trig {
-		var self = this.selfType;
-		self.trig;
-		^self;
-	}
-	tr { this.trig }
-
-	q_ {|aQuant| 
-		var self = this.selfType;
-		self.quant = aQuant;
-		^self;
-	}// ShortHand
-
-	q { 
-		var self = this.selfType;
-		^self.quant;
-	}// ShortHand
-
-	cl_ {|aClock|
-		var self = this.selfType;
-	 	self.clock = aClock;
-	 	^self;
-	}// ShortHand
-
-	cl {
-		var self = this.selfType;
-	 	^self.clock
-	}// ShortHand
-
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-	asN { ^Ndef(this) }
-//-----------------------------------------------------------------------
-//-------------------------PATTERN STUFF---------------------------------
-	asP_ {|obj|
-		obj !? {Pdef(this, obj)};
-		^Pdef(this)
-	}
-	asP { ^Pdef(this) }
-
-	pat { ^Pdef(this) }
-
-	//-----------------------------------------------------------------------
-	//-----------------------------------------------------------------------
-	// Chain
-	<> {|aPattern|
-		this.asP.perform('<>', aPattern)
-	}
-	<+ {|aPattern|
-		this.asP.perform('<+', aPattern)
-	}
-	+> {|aPattern|
-		this.asP.perform('+>', aPattern)
-	}
-	//Set Source
-	?< {|aPattern|
-		this.asP.perform('?<', aPattern)
-	}
-	>? {|aPattern|
-		this.asP.perform('>?', aPattern)
-	}
-	
-
-}
 //-----------------------------------------------------------------------
 //-------------------PATTERNS--------------------------------------------
 
@@ -803,6 +566,7 @@
 		var res = this.at(key);
 		if(res.isNil) {
 			res = super.new(item).prAdd(key);
+
 			if (item.class==PbindProxy) {
 				item.prAddControlMethods(res, item.controlProxies, item.pairs);
 				item.prAddControlMethods((key).asSymbol, item.controlProxies, item.pairs);
@@ -980,25 +744,6 @@
 }
 
 + ProxySpace {
-	/*
-	interpretation of symbols
-	types:
-		xType -> proxy
-		nType -> Ndef
-		pType -> Pdef /*AWAITING IMPLEMENTING*/
-	*/
-	*new { | server, name, clock, type = 'xType' |
-		^super.new.init(server ? Server.default, name, clock, type)
-	}
-
-	init { | argServer, argName, argClock , argType|
-		server = argServer;
-		clock = argClock;
-		this.name = argName;
-		if(clock.notNil) { this.quant = 1.0 };
-
-		this.type = argType;
-	}
 
 	isProxySpace { ^true }
 }

@@ -1,6 +1,6 @@
 //DISKOUT
 SynthDef(\diskout, {arg bufnum;
-    DiskOut.ar(bufnum, In.ar(0,2));
+    DiskOut.ar(bufnum, \in.ar([0,0]));
 }).add;
 
 
