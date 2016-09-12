@@ -6,13 +6,10 @@
 	if (ServerOptions.devices.contains("UMC404HD 192k")) {
 		s.options.inDevice_("UMC404HD 192k");
 		s.options.outDevice_("UMC404HD 192k");
-		// s.options.outDevice_(nil);
-		s.options.sampleRate_(192000 * 0.5);
 		s.reboot;
 	};
-	
 
-	(s.options.memSize == (65536 * 4)).if(
+	(s.options.memSize <= (65536 * 4)).if(
 		{"Enough Memory".postln},
 	{s.options.memSize_(65536 * 4);
 		s.reboot;}
@@ -42,14 +39,16 @@
 		("~/Live/filters/".standardizePath++name.asString++".scd").loadPaths; 
 	};
 	n = NK2(); //nanoKONTROL2
-	ServerTree.put({
-		if(n.class == NK2){
-			n[\fwdMarker].on_({ NKConf.fwd});
-			n[\bkMarker].on_({ NKConf.back});
-			n[\setMarker].on_({ NKConf.set});
-			n[\cycle].on_({ NKConf.clear; n.clearSettings});
-		};
-	}, \nkConf);
+
+	if (ServerTree.dict[\NKConf].isNil) {
+		ServerTree.put({
+				n[\fwdMarker].on_({ NKConf.fwd});
+				n[\bkMarker].on_({ NKConf.back});
+				n[\setMarker].on_({ NKConf.set});
+				n[\cycle].on_({ NKConf.clear; n.clearSettings});
+		}, \NKConf);
+	};
+	
 	u = (); //NKinstrumentSETTINGS
 	t = TempoClock(60/60).permanent_(true); //TEMPO
 
@@ -82,10 +81,64 @@
 	//GUIS
 
 	// (s.serverRunning==false).if({s.plotTree});
+
+//MetroNome
+t = ();
+(
+	t[\basic] = ();
+	t[\basic][\tempo] = 1;
+	t[\basic][\window] = Window("TEMPO:"+"Basic", Rect(1440-300,100,300,100));
+	t[\basic][\window].background_(Color(0.25,0.25,0.25));
+	t[\basic][\window].alpha_(1);
+	t[\basic][\window].alwaysOnTop_(true);
+	t[\basic][\text] = TextView(t[\basic][\window].asView, Rect(40, 20, 200, 50));
+	t[\basic][\text].editable_(false);
+	t[\basic][\beats] = 4;
+	t[\basic][\bars] = 4;
+	t[\basic][\metro] =  { 
+		t[\basic][\window].front;
+		Routine({
+		100.do {|n|
+			t[\basic][\bars].do{|bar|
+				t[\basic][\beats].do{|beat|
+					var string = "\tbar :" + bar.asString++"\n"
+						"\tbeat :" + beat.asString;
+					t[\basic][\text].setString(
+						string,
+						0,
+						string.size
+						);
+					t[\basic][\text].stringColor_(Color(0.75,0.75,0.75));
+					t[\basic][\text].background_(Color(0.25,0.25,0.25));
+					1.wait;
+				};		
+			};
+		}
+		});
+};
+
+	Event.addEventType(\beginConductor, { AppClock.play(t.basic.metro)  });
+		
 )
+	
+	
+)
+
 //----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 
+
+//SETTINGS AS TEXT asView
+/*
+q = ();
+q[\window] = Window("Conductor", Rect(10,900,400,800));
+q[\text] = TextView(q[\window].asView, Rect(10, 10, 400 - 10, 800 - 10));
+q[\text].open("~/Live/JD_Extensions/Controller/NK2/settings.scd".standardizePath);
+q[\text].syntaxColorize;
+q[\text].background_(Color(0.2,0.2,0.2));
+q[\text].enterInterpretsSelection = true;
+q[\window].front;
+*/
 // (
 // var instrPath = "~/Live/setup/instruments".standardizePath;
 

@@ -138,7 +138,7 @@ NK2 : Object {
 	}
 
 	clearSettings{
-		"python /Users/JDMuschett/Live/Controller/nkClearLayout.py".unixCmd
+		"python /Users/JDMuschett/Live/JD_Extensions/Controller/NK2/nkClearLayout.py".unixCmd
 	}
 
 	at {|key|
@@ -192,7 +192,7 @@ NKControl  {
 		ccFunc = func;
 		//TO SETTINGS PAGE
 		pyFunc = "n['"++this.name++"'].cc_("++ccFunc.asCompileString++");";
-		pyFunc = "python /Users/JDMuschett/Live/Controller/nkLayout.py "
+		pyFunc = "python /Users/JDMuschett/Live/JD_Extensions/Controller/NK2/nkLayout.py "
 			++this.name.asString++" "++pyFunc.asCompileString;
 		// pyFunc.postln;
 		pyFunc.unixCmd;
@@ -246,7 +246,7 @@ NKTrig : NKControl {
 		//TO SETTINGS PAGE
 		pyKey = this.name.asString++"'].on";
 		pyFunc = "n['"++pyKey++"_("++onFunc.asCompileString++");";
-		pyFunc = "python /Users/JDMuschett/Live/Controller/nkLayout.py "
+		pyFunc = "python /Users/JDMuschett/Live/JD_Extensions/Controller/NK2/nkLayout.py "
 		++pyKey.asCompileString++" "++pyFunc.asCompileString;
 		pyFunc.unixCmd();
 
@@ -288,7 +288,7 @@ NKToggle : NKTrig{
 		//TO SETTINGS PAGE
 		pyKey = this.name.asString++"'].off";
 		pyFunc = "n['"++pyKey++"_("++offFunc.asCompileString++");";
-		pyFunc = "python /Users/JDMuschett/Live/Controller/nkLayout.py "
+		pyFunc = "python /Users/JDMuschett/Live/JD_Extensions/Controller/NK2/nkLayout.py "
 			++pyKey.asCompileString++" "++pyFunc.asCompileString;
 		pyFunc.unixCmd();
 		this.def.value;

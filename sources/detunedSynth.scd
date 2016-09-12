@@ -1,3 +1,4 @@
+
 (
 // sequence
 ~crdStr = [["E1", "E2", "B3", "D4", "G4"],
@@ -68,14 +69,14 @@ SynthDef(\simpSaw2, {|freq, gate=1|
 		var m = 2**(detune1/1200).rand2;
 		var saw = LFSaw.ar(m * freq/2);
 		saw;
-		// DelayC.ar(saw, 0.02, freq.reciprocal.rand);
+		DelayN.ar(saw, 0.1, 0.1);
 	}.dup(nvoices1);
 
 	var osc2 = {
 		var m = 2**(detune2/1200).rand2;
 		var saw = LFSaw.ar(m * freq);
 		saw;
-		// DelayC.ar(saw, 0.02, freq.reciprocal.rand);
+		DelayN.ar(saw, 0.1, 0.1);
 	}.dup(nvoices2);
 
 	Out.ar(0, Splay.ar(osc1 + osc2 * adsr)/4);
@@ -146,7 +147,7 @@ SynthDef(\simpSaw4, {|freq, gate=1|
 	}.dup(nvoices2);
 
 	var snd = BLowPass4.ar(osc1, 800, 0.5) + osc2 / 4;
-	Out.ar(0, Splay.ar(snd*adsr*SinOsc.kr(MouseX.kr.range(0.5,20)).range(0.5,1)));
+	Out.ar(0, Splay.ar(snd*adsr*SinOsc.kr(MouseX.kr.range(0.5,20)).range(-0.1,0.1)));
 }).add;
 )
 

@@ -167,11 +167,11 @@ SymbolConverter {
 	//Copy
 	|+ {|extension, attachPoint = 'front'|
 		var self = this.selfType;
-		self.perform('|', attachPoint, extension) 
+		^self.perform('|+', attachPoint, extension) 
 	} 
-	| {|newName, attachPoint = 'front'|
+	| {|newName|
 		var self = this.selfType;
-		self.perform('|', attachPoint, newName) 
+		^self.perform('|', newName)
 	} 
 
 //-----------------------------------------------------------------------
@@ -268,7 +268,10 @@ SymbolConverter {
 	//-----------------------------------------------------------------------
 	// Chain
 	<> {|aPattern|
-		this.asP.perform('<>', aPattern)
+		^this.asP.perform('<>', aPattern)
+	}
+	>< {|aPattern|
+		^this.asP.perform('><', aPattern)
 	}
 	<+ {|aPattern|
 		this.asP.perform('<+', aPattern)
@@ -284,5 +287,12 @@ SymbolConverter {
 		this.asP.perform('>?', aPattern)
 	}
 	
+	|? {|funcKeyPair|
+		^this.asP.perform('|?', funcKeyPair)
+	}
+
+	//-----------------------------------------------------------------------
+	//-----------------------------------------------------------------------
+	//Fdef
 
 }

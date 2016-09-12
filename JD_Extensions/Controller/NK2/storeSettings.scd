@@ -1,7 +1,7 @@
-n['knob0'].cc_({|val| ~romance.sm(\rate, val,\lfo)});
+n['knob0'].cc_({|val| });
 n['fader0'].cc_({|val|});
-n['s0'].on_({ ~romance.play});
-n['s0'].off_({ ~romance.stop});
+n['s0'].on_({  });
+n['s0'].off_({  });
 n['m0'].on_({  });
 n['m0'].off_({  });
 n['r0'].on_({  });
@@ -27,8 +27,8 @@ n['r2'].off_({ });
 
 n['knob3'].cc_({|val| });
 n['fader3'].cc_({|val|});
-n['s3'].on_({ });
-n['s3'].off_({ });
+n['s3'].on_({ Ndef(\name).play});
+n['s3'].off_({ Ndef(\name).play});
 n['m3'].on_({ });
 n['m3'].off_({ });
 n['r3'].on_({ });

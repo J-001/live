@@ -460,6 +460,24 @@
 //-----------------------------------------------------------------------
 //-------------------PATTERNS--------------------------------------------
 
++ EventPatternProxy {
+
+	source_ { arg obj;
+		if(obj.isKindOf(Function)) // allow functions to be passed in
+		{ pattern = PlazyEnvirN(obj) }
+		{ if (obj.isNil)
+			{ pattern = this.class.default }
+			{ pattern = obj }
+		};
+
+		pattern = this.symbolFilter(obj);
+
+		envir !? { pattern = pattern <> envir };
+		this.wakeUp;
+		source = obj;
+		this.changed(\source, obj);
+	}
+}
 + Pdef {
 
 	convertSymbol {|input|
@@ -499,19 +517,29 @@
 	}
 	//copy to new name
 	| {|newCopyName|
-		newCopyName.asSymbol.postln;
-		^this.copy(newCopyName.asSymbol)
+		newCopyName.asSymbol;
+		^this.copy(newCopyName.asSymbol).postln
 	} 
+	// Nameless Copy with set args
+	|? {|aFuncKeyPairs|
+		var funcKeyPairs = aFuncKeyPairs;
+
+		if (funcKeyPairs.isFunction) {
+			^this.source.basicAnon(funcKeyPairs)
+		} {
+			^this.source.anon(*funcKeyPairs)
+		}
+	}
 
 	//-----------------------------------------------------------------------
 	//-----------------------------------------------------------------------
-	//c = a <> b; //b overrides a
+	//c = a >< b; //b overrides a
 	//CHAIN
-	<> {| aPattern|
-		var pattern = this.convertSymbol(aPattern);
-		var self = this.convertSelfFromSymbol;
-		^Pchain(pattern, self);
-	}
+	// >< {| aPattern|
+	// 	var pattern = this.convertSymbol(aPattern);
+	// 	var self = this.convertSelfFromSymbol;
+	// 	^Pchain(pattern.source, self);
+	// }
 	// b <+ a; // b overrides a; return b;
 	<+ {|aPattern|
 		var pattern = this.convertSymbol(aPattern);
@@ -527,7 +555,6 @@
 	}
 	//-----------------------------------------------------------------------
 	//-----------------------------------------------------------------------
-	//set source
 	// b ?< a; // a source of b; return b
 	?< {|aPattern|
 		var pattern = this.convertSymbol(aPattern);
@@ -598,8 +625,11 @@
 	at {|key|
 		this.source.at(key)
 	}
-}
 
+	asStream {
+		^this.source.asStream
+	}
+}
 
 + PbindProxy {
 
@@ -662,6 +692,10 @@
 		};
 	}
 
+	*new { arg ... pairs;
+		^super.newCopyArgs(pairs).init
+	}
+
 	init {
 		//Store in this dict original args for unset
 		var dctPairs = ();
@@ -671,6 +705,7 @@
 			var source = pairs[i + 1];
 
 			source = this.functionToProxy(pairs[i], source);
+			source = super.symbolFilter(source).postln;
 			
 			proxy.setSource(source);
 			pairs[i+1] = proxy
@@ -704,8 +739,7 @@
 					pairs.removeAt(i);
 					changedPairs = true;
 				}{
-					var source = this.functionToProxy(key, val.source);
-					val.source.postln;
+					var source = this.functionToProxy(key, val);
 					pairs[i+1].quant_(quant).setSource(source)
 				};
 			}{
@@ -724,6 +758,26 @@
 		}
 	}
 
+	//Nameless Copy and add value
+	anon {|...aPairs|
+		var dct = this.pairs.as(Dictionary);
+		var copy = this.deepCopy;
+
+		aPairs.pairsDo {|key, func|
+			var source = dct[key].source;
+			copy.set(key, func.(source))
+		}
+
+		^copy;
+	}
+
+	basicAnon {|func|
+		var source = this.pairs[1].source;
+		var copy = this.deepCopy;
+		copy.set(this.pairs[0], func.(source))
+		^copy;
+	}
+
 	@! {|aPairs, control|
 		var pairs = aPairs;
 
@@ -740,6 +794,120 @@
 		this.set(*pairs);
 	}
 
+}
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
++ Pattern {
+
+	convertSelfFromSymbol {
+		if (this.class.isKindOf(Symbol)) {
+			^Pdef(this)
+		} {
+			^this;
+		}
+	}
+
+	symbolFilter {|aInput|
+		var input = aInput;
+		if (input.class==Symbol) {
+			[\rest].do {|illegal|
+				if (input==illegal) {
+					^input
+				} {
+					^input = Pdef(input)
+				}
+			} 
+		} {
+			^input
+		}
+	}
+
+	>< {| aPattern|
+		var pattern = this.symbolFilter(aPattern);
+		var self = this.convertSelfFromSymbol;
+		^Pchain(pattern.source.postln, self);
+	}
+
+}
+
++ ListPattern {
+	*new { arg list, repeats=1;
+		if (list.size > 0) {
+			var filteredList;
+			filteredList = list.collect{|element|
+				super.new.symbolFilter(element)
+			};
+			^super.new.list_(filteredList.postln).repeats_(repeats)
+		}{
+			Error("ListPattern (" ++ this.name ++ ") requires a non-empty collection; received "
+				++ list ++ ".").throw;
+		}
+	}
+}
+
++ Pchain {
+
+	*new { arg ... patterns;
+		var filteredList;
+		filteredList = patterns.collect{|element|
+			super.new.symbolFilter(element)
+		};
+		^super.newCopyArgs(filteredList);
+	}
+}
+
++ Pbind {
+	
+	*new { arg ... pairs;
+		var filteredPairs = nil!pairs.size;
+		if (pairs.size.odd, { Error("Pbind should have even number of args.\n").throw; });
+
+		forBy (0, pairs.size - 1, 2, {|i|
+			var key = pairs[i + 0];
+			var item = pairs[i + 1];
+			filteredPairs[i + 0] = key;
+
+			if (item.class == PatternProxy) {
+				if ([\type, \instrument].contains(key)) {
+					filteredPairs[i + 1] = PatternProxy.new(item)
+				}{
+					filteredPairs[i + 1] = PatternProxy.new.setSource(super.new.symbolFilter(item))
+				};
+
+			} {
+				if ([\type, \instrument].contains(key)) {
+					filteredPairs[i + 1] = item
+				}{
+					filteredPairs[i + 1] = super.new.symbolFilter(item)
+				};	
+			};
+			
+		});
+		// filteredPairs.postln;
+		// pairs.postln;
+		^super.newCopyArgs(filteredPairs)
+	}
+}
+
++ Pmono {
+	*new { arg name ... pairs;
+		var filteredPairs = nil!pairs.size;
+		if (pairs.size.odd, { Error("Pmono should have odd number of args.\n").throw; });
+
+		forBy (0, pairs.size - 1, 2, {|i|
+			var key = pairs[i + 0];
+			var item = pairs[i + 1];
+			filteredPairs[i + 0] = key;
+			if ([\type, \instrument].contains(key)) {
+					filteredPairs[i + 1] = item
+				} {
+					filteredPairs[i + 1] = super.new.symbolFilter(item)
+			}
+		});
+
+		// filteredPairs.postln;
+		^super.newCopyArgs(name.asSymbol, filteredPairs)
+	}
 }
 
 //-----------------------------------------------------------------------

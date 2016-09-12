@@ -1,6 +1,6 @@
 + Object {
 
-	// getUniqueMethods {
-	// 	^this.uniqueMethods
-	// }
+	psq {|num|
+		^Pseq([this], num)
+	}
 }

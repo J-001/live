@@ -1,9 +1,9 @@
 import os
 import sys
 
-inPath = '/Users/JDMuschett/Live/Controller/storeSettings.scd'
-storePath = '/Users/JDMuschett/Live/Controller/storeSettings.scd'
-outPath = '/Users/JDMuschett/Live/Controller/settings.scd'
+inPath = '/Users/JDMuschett/Live/JD_Extensions/Controller/NK2/storeSettings.scd'
+storePath = '/Users/JDMuschett/Live/JD_Extensions/Controller/NK2/storeSettings.scd'
+outPath = '/Users/JDMuschett/Live/JD_Extensions/Controller/NK2/settings.scd'
 
 fsKey = sys.argv[1]
 cs = sys.argv[2] + '\n'

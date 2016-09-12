@@ -1,10 +1,9 @@
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 // syncBass
-//root
-
+//roo
 Pdef(\syncBassRoot,
-	Pbind(
+	PbindProxy(
 		\instrument, \bass,
 		\freq,Pseq([100, 100, 100, 200]),
 		\amp,1,
@@ -13,10 +12,9 @@ Pdef(\syncBassRoot,
         \type, Pfunc{|e| if (e.rel<=1) {\on} {\note}};
 	)
 );
-
 //end
 Pdef(\syncBassEnd, 
-	Pbind(
+	PbindProxy(
 		 \instrument, \bass,
 		 \rel,1,
 		 \amp,1,
@@ -28,11 +26,26 @@ Pdef(\syncBassEnd,
 		 	])
 	)
 );
-//combos in Main
-Pdef(\syncBass, 
+//main
+Pdef(\syncBass.postln, 
 	Pseq([
 		Pdef(\syncBassRoot),
 		Pdef(\syncBassEnd)
 	],inf)
 );
 //-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+Pdef(\r_drive_f,
+	Pwrand([0.5,Pseq([0.75,0.25]*0.5),Pseq([0.25,0.25])],[0.7,0.2,0.1])
+);
+Pdef(\bass_drive,
+	 PbindProxy(
+		\instrument, \bass,
+		\freq, [70],
+		\detune, 0.01,
+		\amp, 0.5,
+		\legato, 2,
+		\dur, \r_drive_f,
+		\rel, Pfunc{|e| e.dur * e.legato}
+	)
+)

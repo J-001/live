@@ -1,9 +1,9 @@
 import os
 import sys
 
-templatePath = '/Users/JDMuschett/Live/Controller/nkTemplateSettings.scd'
-storePath = '/Users/JDMuschett/Live/Controller/storeSettings.scd'
-settingPath = '/Users/JDMuschett/Live/Controller/settings.scd'
+templatePath = '/Users/JDMuschett/Live/JD_Extensions/Controller/NK2/nkTemplateSettings.scd'
+storePath = '/Users/JDMuschett/Live/JD_Extensions/Controller/NK2/storeSettings.scd'
+settingPath = '/Users/JDMuschett/Live/JD_Extensions/Controller/NK2/settings.scd'
 
 def clear(path):
 	file = open(path, "w")

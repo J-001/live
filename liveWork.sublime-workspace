@@ -897,12 +897,6 @@
 		"whole_word": false,
 		"wrap": true
 	},
-	"folders":
-	[
-		{
-			"path": "/Users/JDMuschett/Live"
-		}
-	],
 	"groups":
 	[
 		{
@@ -947,7 +941,7 @@
 		"height": 0.0
 	},
 	"pinned_build_system": "Xcode Build",
-	"project": "",
+	"project": "liveWork.sublime-project",
 	"replace":
 	{
 		"height": 40.0

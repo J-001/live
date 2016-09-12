@@ -1,0 +1,23 @@
+{
+	"folders":
+	[
+		{
+			"path": "sketches"
+		},
+		{
+			"path": "livespace"
+		},
+		{
+			"path": "instruments"
+		},
+		{
+			"path": "sources"
+		},
+		{
+			"path": "filters"
+		},
+		{
+			"path": "setup"
+		}
+	]
+}
