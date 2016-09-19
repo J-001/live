@@ -1,8 +1,6 @@
 
 
 
-n['s3'].on_({ Ndef(\name).play});
-n['s3'].off_({ Ndef(\name).play});
 
 
 

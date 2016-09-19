@@ -44,25 +44,29 @@
 	}
 	
 	prAddControlMethods {| instance, kpDct, pairs |
+		instance.postln;
 		//KEEP ORIGINAL ARGS FOR RESET
-		pairs.pairsDo{|key, val|
-			var valSource = val.source;
+		pairs.pairsDo{|aKey, val|
+			var valSource = val;
+			var key = aKey.jdAbbreviations;
 			var methodKey = ('k_'++key++'_').asSymbol;
 			instance.addUniqueMethod(methodKey, {|self ... aArgs|
 				kpDct[key].set(*aArgs);
 			});
 			//ADD UNIQUE METHODS TO GET/SET CONTROLS
 			//GET
+			((key++'_').asString+"Getter");
 			instance.addUniqueMethod(key, { valSource }); 
 			//SET
+			((key++'_').asString+"Setter");
 			instance.addUniqueMethod((key++'_').asSymbol, {|self, newVal|
 				newVal !? {
-					newVal.postln;
+					// newVal.postln;
 					valSource = newVal;
 					if (instance.class==Symbol) { 
-						instance.asN.set(key, valSource);
+						Ndef(instance).set(key, valSource);
 					} {
-						instance.class.postln;
+						// instance.class.postln;
 						instance.set(key, valSource);
 					};
 				};
@@ -70,28 +74,111 @@
 			});
 		};
 	}
+	//Adds All node proxy Methods To Symbol
+	methodsToSymbol{
+		NodeProxy.methods.do{|method|
+			// this.key.postln;
+			// method.name.asSymbol.postln;
+			this.key.addUniqueMethod(method.name.asSymbol, {|self ... args|
+				// method.name.postln;
+				// args.postln;
+				this.perform(method.name.asSymbol, *args);
+				});
+		}
+	}
+
+	uniqueMethodsFromTemplate{|template|
+		var kvControls = template;
+		// template.postln;
+		this.prAddControlMethods(this.key, this.controlProxies, kvControls)
+	}
+
+	umt {|template|
+		var kvControls = template;
+		// template.postln;
+		this.prAddControlMethods(this.key, this.controlProxies, kvControls)
+	}
 
 	//-----------------------------------------------------------------------
 	//-----------------------------------------------------------------------
 	source_ {|obj|
 		var hasInArg;
+
+		if (obj.isKindOf(Pattern) or: obj.isKindOf(PatternProxy)) {
+			obj.quant_(this.quant);
+			this.quant.postln;
+		};
 		this.put(nil, obj, 0);
 
 		//CHECK FOR IN TYPE
-		if (this.keysValuesAsDict[\in].notNil) {
-			this.type = \in;
+		if (this.keysValuesAsDict[\pre_in].notNil) {
+			this.type = \pre_in;
 			if (inProxy.isNil) { inProxy = NodeProxy.audio() };
-			this <<> inProxy;
+			this <<> .pre_in inProxy;
 		};
 		//this
 		this.prAddControlMethods(this, this.controlProxies, this.controlKeysValues);
-		//Symbols
-		if(this.class==Ndef) {
+
+		if(this.class == Ndef) {
 			var symbolWithExtU = (this.key++'_N').asSymbol;
-			var symbolWithExtL = (this.key++'_n').asSymbol;			
-			this.prAddControlMethods( symbolWithExtU, this.controlProxies, this.controlKeysValues);
-			this.prAddControlMethods( symbolWithExtL, this.controlProxies, this.controlKeysValues);
-			this.prAddControlMethods( this.key, this.controlProxies, this.controlKeysValues);
+			var symbolWithExtL = (this.key++'_n').asSymbol;
+			var controlKVPairs;
+
+			if (obj.isKindOf(EventPatternProxy)) {
+				obj = obj.source;
+			};
+
+			if(obj.class == Pchain) {
+				controlKVPairs = List.new;
+
+				obj.patterns.reverse.do{|pattern, n|
+					var pairs;
+
+					if (pattern.isKindOf(EventPatternProxy)) {
+						pattern = pattern.source;
+					};
+
+					if (pattern.isKindOf(PbindProxy)) {
+						pairs = pattern.pairs;
+					};
+					if (pattern.isKindOf(Pbind) or: pattern.isKindOf(Pmono)) {
+						pairs = pattern.patternpairs;
+					};
+
+					pairs.pairsDo{|key, val|
+						if (controlKVPairs.contains(key).not) {
+								
+								controlKVPairs.add(key);
+								controlKVPairs.add(val);
+							} {
+								var i;
+								i = controlKVPairs.array.find([key]);
+								controlKVPairs.array[i + 1] = val;
+						}
+					}
+				}
+			};
+
+			if (obj.isKindOf(PbindProxy)) {
+				controlKVPairs = obj.pairs;
+			};
+			if (obj.isKindOf(Pbind) or: obj.isKindOf(Pmono)) {
+				controlKVPairs = obj.patternpairs;
+			};
+			if (obj.isFunction) {
+				controlKVPairs = this.controlProxies;
+			};
+			//removeUniqueMethods
+			this.key.removeUniqueMethods;
+			symbolWithExtU.removeUniqueMethods;
+			symbolWithExtL.removeUniqueMethods;
+			// Add Methods of new source
+			this.prAddControlMethods( symbolWithExtU, this.controlProxies, controlKVPairs);
+			this.prAddControlMethods( symbolWithExtL, this.controlProxies, controlKVPairs);
+			this.prAddControlMethods( this.key, this.controlProxies, controlKVPairs);
+
+			this.methodsToSymbol;
+			
 		};
 	}
 
@@ -103,11 +190,16 @@
 			var val = args[i + 1];
 			args[i + 1] = this.functionToProxy(key, val);
 		};
-
+		
 		nodeMap.set(*args);
 		if(this.isPlaying) {
 			server.sendBundle(server.latency, [15, group.nodeID] ++ args.asOSCArgArray);
 		}
+	}
+
+	//
+	pset{| ... pairs|
+		this.objects[0].source.set(*pairs)	
 	}
 	
 	//-------------ROUTING--------------------------------------------------
@@ -133,24 +225,32 @@
 		var ctl, rate, numChannels, canBeMapped;
 		var input = this.adaptInputToSelfType(proxy);
 		var self = this;
+		input.postln;
 		// IF PROXY IS NIL
 		if(input.isNil) { ^self.unmap(key) };
 
-		self.generateUniqueName.postln;
-		// IN TYPE HAS AN INPUT PROXY THAT MIXES MULTIPLE 
-		// PROXIES BEFORE INPUTTING TO MATCHING
-		if (self.type==\in) {
-			// IF NO IN PROXY EXIST MAKE NEW ONE
-			if(self.inProxy.isNil) {
-			 	self.inProxy = NodeProxy.audio().fadeTime_(self.fadeTime);
+		if (key=='in') { 
+			// IN TYPE HAS AN INPUT PROXY THAT MIXES MULTIPLE 
+			// PROXIES BEFORE INPUTTING TO MATCHING
+			if (self.type==\pre_in) {
+				// IF NO IN PROXY EXIST MAKE NEW ONE
+				if(self.inProxy.isNil) {
+				 	self.inProxy = NodeProxy.audio().fadeTime_(self.fadeTime);
+				};
+				// self.inProxy[input.generateUniqueName.asSymbol] ?? {
+				// 	self.inProxy[input.generateUniqueName.asSymbol] = {input.ar} 
+				// };
+				(self.key.asString++ " inProxy <-" + input.key.asString).postln;
+				self.inProxy[input.key.asSymbol] ?? {
+					self.inProxy[input.key.asSymbol] = {input.ar} 
+				};
+				// ADD THE IN_PROXY TO THE LIST OF YHE INPUT's OUTPUT's
+				// SO CAN BE CLEARED 
+				input.destProxies.add(self.inProxy);
+				input = self.inProxy;
+				self.postln;
+				self.inProxy.postln;
 			};
-			self.inProxy[input.generateUniqueName.asSymbol] ?? {
-				self.inProxy[input.generateUniqueName.asSymbol] = {input.ar} 
-			};
-			// ADD THE IN_PROXY TO THE LIST OF YHE INPUT's OUTPUT's
-			// SO CAN BE CLEARED 
-			input.destProxies.add(self.inProxy);
-			input = self.inProxy;
 		};
 
 		ctl = self.controlNames.detect { |x| x.name == key };
@@ -174,7 +274,7 @@
 			"Could not link node proxies, no matching input found.".warn
 		};
 		
-		^self // returns first argument for further chaining
+		^self // returns self for further chaining
 	}
 
 	>> { | proxy, key = \in |
@@ -183,29 +283,6 @@
 			proxy = Ndef(proxy);
 		};
 		proxy.perform('<<', this, key);
-	}
-
-	rm {|aProxy|
-		var key;
-		var func = {|proxy|
-			proxy.postln;
-			proxy = this.adaptInputToSelfType(proxy);
-
-			proxy.postln;
-			proxy !? {key = proxy.generateUniqueName.asSymbol};
-			key.postln;
-			this.inProxy[key] = nil;
-		};
-
-		if (aProxy.isArray) {
-			aProxy.do{|proxy|
-				func.(proxy);
-			};
-			^this;
-		};
-
-		func.(aProxy);
-
 	}
 	//-----------------------------------------------------------------------
 	//----------------------PLAY CONTROLS------------------------------------
@@ -221,13 +298,17 @@
 
 		// CLEAR SLOT IN DESTINITAION PROXY
 		this.destProxies.do{|destProxy|
-			this.generateUniqueName.asSymbol.postln;
-			destProxy[this.generateUniqueName.asSymbol] = nil;
+			// destProxy[this.generateUniqueName.asSymbol] = nil;
+			destProxy[this.asSymbol] = nil;
 		};
 		//CLEAR SPECS
 		this.clearSpecs(fadeTime);
 		//CLEAR IN PROXY
-		this.inProxy !? {"IN PROXY CLEARED".postln; this.inProxy.clear(fadeTime) };
+		this.inProxy !? {
+			"IN PROXY CLEARED".postln; 
+			this.inProxy.fadeTime_(fadeTime);
+			this.inProxy = nil 
+		};
 		//clear variants
 		this.variants.clear;
 		//controlProxies
@@ -235,6 +316,7 @@
 		this.removeUniqueMethods;
 		(this.key++'_N').asSymbol.removeUniqueMethods;
 		(this.key++'_n').asSymbol.removeUniqueMethods;
+		(this.key).asSymbol.removeUniqueMethods;
 
 		//FROM ORIGINAL CLASS DEFINITION
 		this.free(fadeTime, true); 	// free group and objects
@@ -246,6 +328,15 @@
 		this.freeBus;	 // free the bus from the server allocator
 		this.init;	// reset the environment
 		this.changed(\clear, [fadeTime]);
+	}
+
+	rm {|fadeTime ... proxies|
+		// fadeTime.postln;
+		// proxies.postln;
+		proxies.do{|proxy|
+			this.inProxy.fadeTime_(fadeTime);
+			this.inProxy[proxy] = nil;
+		}
 	}
 
 	p { this.play }
@@ -353,17 +444,24 @@
 	@ {|obj, at = 0| 
 		var index;
 		index = at;
-		if (obj.isKindOf(Symbol), {
-				^this.nd[index] = Ndef(obj);
-			});
-		if(obj.asCompileString.contains("|in")) {
-			if(at==0) {
-				index = this.nd.objects.size;
+		if (obj.isKindOf(Symbol)) {
+				if (Fdef(obj).cs.contains("|in")) {
+					obj = Fdef(obj).postln
+				} {
+					^this[index] = Ndef(obj).postln;
+				};
 			};
-			this.nd.filter( index, obj);
-			^this.nd[index]
+		if (obj.asCompileString.contains("|in")) {
+			// If no location supplied add to next index 
+			if(at == 0) {
+				index = this.objects.size;
+			};
+			this.filter( index, obj);
+
+			obj.cs.postln;
+			^this
 		};
-		if (at==0) {
+		if (at == 0) {
 			this.source_(obj)
 		} {
 			this[index] = obj
@@ -373,7 +471,7 @@
 	//-----------------------------------------------------------------------
 	//-----------------------------------------------------------------------
 	// COPY WITH EXTENSION
-	|+ {|extension, attachPoint = 'front'|
+	|+ {|extension, attachPoint = 'back'|
 		/* INCOMPLETE */
 		var self = this;
 		var func = {|self|
@@ -518,7 +616,7 @@
 	//copy to new name
 	| {|newCopyName|
 		newCopyName.asSymbol;
-		^this.copy(newCopyName.asSymbol).postln
+		^this.copy(newCopyName.asSymbol)
 	} 
 	// Nameless Copy with set args
 	|? {|aFuncKeyPairs|
@@ -544,7 +642,7 @@
 	<+ {|aPattern|
 		var pattern = this.convertSymbol(aPattern);
 		var self = this.convertSelfFromSymbol;
-		self.source_(Pchain(pattern.postln, self.postln));
+		self.source_(Pchain(pattern, self));
 		^self
 	}
 	// b +> a; // a overrides b; return a;
@@ -567,13 +665,13 @@
 		var pattern = this.convertSymbol(aPattern);
 		var self = this.convertSelfFromSymbol;
 		pattern.source_(self);
-		pattern.postln; self.postln;
+		pattern; self;
 		^pattern
 	}
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 	//SET
-	st {|... kvPairs|
+	set {|... kvPairs|
 		this.source.set(*kvPairs)
 	}
 	//RESET
@@ -589,7 +687,7 @@
 		this.source.perform('@!', aPairs, aControl)
 	}
 	@ {|aPairs, aControl|
-		this.source.perform('@!', aPairs, aControl)
+		this.source.perform('@', aPairs, aControl)
 	}
 //-----------------------------------------------------------------------
 //----------------PbindProxy-Access--------------------------------------
@@ -601,14 +699,15 @@
 
 			if (item.class==PbindProxy) {
 				item.prAddControlMethods(res, item.controlProxies, item.pairs);
-				item.prAddControlMethods((key).asSymbol, item.controlProxies, item.pairs);
+				item.prAddControlMethods((key++'_P').asSymbol, item.controlProxies, item.pairs);
 			}
 		} {
 			if(item.notNil) { 
 				res.source = item; 
+				// res.source.postln;
 				if (item.class==PbindProxy) {
 					item.prAddControlMethods(res, item.controlProxies, item.pairs);
-					item.prAddControlMethods((key).asSymbol, item.controlProxies, item.pairs);
+					item.prAddControlMethods((key++'_P').asSymbol, item.controlProxies, item.pairs);
 				}
 			}
 		}
@@ -679,7 +778,7 @@
 			//SET
 			instance.addUniqueMethod((key++'_').asSymbol, {|self, newVal|
 				newVal !? {
-					newVal.postln;
+					// newVal.postln;
 					valSource = newVal;
 					if (instance.class==Symbol) { 
 						instance.asP.set(key, valSource);
@@ -705,7 +804,6 @@
 			var source = pairs[i + 1];
 
 			source = this.functionToProxy(pairs[i], source);
-			source = super.symbolFilter(source).postln;
 			
 			proxy.setSource(source);
 			pairs[i+1] = proxy
@@ -739,7 +837,9 @@
 					pairs.removeAt(i);
 					changedPairs = true;
 				}{
-					var source = this.functionToProxy(key, val);
+					var source = this.functionToProxy(key, val.source);
+					pairs[i + 1].postln;
+					val.postln;
 					pairs[i+1].quant_(quant).setSource(source)
 				};
 			}{
@@ -766,8 +866,8 @@
 		aPairs.pairsDo {|key, func|
 			var source = dct[key].source;
 			copy.set(key, func.(source))
-		}
-
+		};
+		dct.postln;
 		^copy;
 	}
 
@@ -776,6 +876,16 @@
 		var copy = this.deepCopy;
 		copy.set(this.pairs[0], func.(source))
 		^copy;
+	}
+
+	|? {|aFuncKeyPairs|
+		var funcKeyPairs = aFuncKeyPairs;
+
+		if (funcKeyPairs.isFunction) {
+			^this.basicAnon(funcKeyPairs)
+		} {
+			^this.anon(*funcKeyPairs)
+		}
 	}
 
 	@! {|aPairs, control|
@@ -818,14 +928,19 @@
 				}
 			} 
 		} {
-			^input
+			if (input.class==Env) {
+				^[input].postln;
+			} {
+				^input				
+			}
 		}
 	}
+
 
 	>< {| aPattern|
 		var pattern = this.symbolFilter(aPattern);
 		var self = this.convertSelfFromSymbol;
-		^Pchain(pattern.source.postln, self);
+		^Pchain(pattern, self);
 	}
 
 }
@@ -837,7 +952,7 @@
 			filteredList = list.collect{|element|
 				super.new.symbolFilter(element)
 			};
-			^super.new.list_(filteredList.postln).repeats_(repeats)
+			^super.new.list_(filteredList).repeats_(repeats)
 		}{
 			Error("ListPattern (" ++ this.name ++ ") requires a non-empty collection; received "
 				++ list ++ ".").throw;

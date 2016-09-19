@@ -27,8 +27,8 @@ n['r2'].off_({ });
 
 n['knob3'].cc_({|val| });
 n['fader3'].cc_({|val|});
-n['s3'].on_({ Ndef(\name).play});
-n['s3'].off_({ Ndef(\name).play});
+n['s3'].on_({ });
+n['s3'].off_({ });
 n['m3'].on_({ });
 n['m3'].off_({ });
 n['r3'].on_({ });

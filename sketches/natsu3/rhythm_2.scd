@@ -23,7 +23,7 @@ Pdef(\pulsehit,
         	0.75,0.25,0.25,0.25,0.25,0.25
         	],inf)
     )
-).play(t,quant:4);
+).play(quant:4);
 
 Pdef(\pulsehit2,
     Pbind(
@@ -35,7 +35,7 @@ Pdef(\pulsehit2,
         	0.25,0.25,0.25,0.25,0.25,0.75,0.25
         	],inf)
     )
-).play(t,quant:4);
+).play(quant:4);
 
 Pdef(\pulsehit3,
     Pbind(
@@ -47,7 +47,7 @@ Pdef(\pulsehit3,
         	0.25,0.25,0.25,0.25,0.75,0.25
         	],inf)
     )
-).play(t,quant:4);
+).play(quant:4);
 
 Pdef(\pulsehit).clear;
 Pdef(\pulsehit2).clear;
@@ -69,7 +69,7 @@ Pdef(\pulsescale,
         	Pseq([0.125],3/0.125)
         	],inf)*2
     )
-).play(t,quant:4);
+).play(quant:4);
 
 Pdef(\pulsescale).stop;
 

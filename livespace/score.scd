@@ -1,81 +1,104 @@
-\bassDrive2_P.asP_(
-	Pseq([
-			\bassDrive.asP.psq(32),
-		[\bassDrive.asP.psq(14),2.rest].flatten.psq(1)
-	],inf)
-).q_(8).p
-
-//--------------------------------------------------------------
-Pdef(\summerGlide2.postln,
-	Pmono(
-		\fmMMCAsr,
-		\amp,0.1,
-		[\midinote,\dur], Ptuple([
-			Pseq([0,Pwhite(-12,12,1)]) + 60,
-			Pseq([7.5,0.5])
-			], inf),
-		// Ptuple([ 
-		// 	Pseq([0,-2,3,5]) + 60 + [0,3,7,10], //FREQ
-		// 	1 * 0.5], //DUR
-		// 	inf ),
-		// []
-		\modRatio1,Pwhite(50.0,100.0) * 0.5,
-		\modRatio2,Pwhite(50.0,100.0) * 0.5,
-		\index1,Pwhite(50.0,100.0) * 0.5,
-		\index2,Pwhite(50.0,100.0) * 0.5
+Pdef(\play,	
+	PbindProxy(
+		\bufnum, Prand(b.choose.choose,inf), 
+		\instrument, i.smpN,
+		// \rate, -1 * {rrand(0.9,1.1)}!3 * Pwrand([1,5],[0.9,0.1],inf),
+		\rate, 1,
+		\startPos, Pwhite(0.5,1.0),
+		\loop, 1,
+		\amp, 0.5,
+		\pan, Pwhite(-1.0,1.0),
+		\legato,  1,
+		\dur,  Pseq([1,1,1,0.5,0.5],inf) 
 	)
-)
-Pdef(\summerGlide3.postln,
+).q_(8);
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+\gtrPlay.q_(8) @ (
+	Pdef(\play) >< 
+	PbindProxy(
+		\bufnum , b.guitar.choose[0],
+		\startPos, Pwhite(0.0,2.0),
+		// \rate, Prand([[1,0.5]], inf) * Prand([-1,1], inf) ,
+		\rate, 1,
+		\legato,2,
+		\amp, 0.1,
+		\instrument, i.smpN,
+		\trig, 1,
+		'dur', Pseq([4,8,2,2],inf)
+		) 
+	);
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+\gtrPlay2.q_(8) @ ( 
+	Pdef(\play) >< 
+	PbindProxy(\bufnum , 
+		b.guitar.choose[0],
+		\startPos, Pwhite(0.0,1.0),
+		\rate, Prand([[1,0.5]], inf) * Prand([-1,1], inf) ,
+		\amp, 0.1,
+		\instrument, i.smpN,
+		\trig, 1,
+		'dur', Pseq([4,8,2,2],inf)
+		) 
+	);
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+\gtrLin.q_(8) @ ( 
+	Pdef(\play) >< 
+	PbindProxy(\bufnum , 
+		b.guitar.choose[0],
+		\startPos, Pwhite(0.0,1.0),
+		\amp, 0.05,
+		\instrument,  i.smpN ,
+		\trig, 1,
+		'dur', Pseq([60]),
+		\rate, {XLine.kr(0.05,100,60) }
+
+		) 
+	);
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+\crackle.q_(8) @ Pdef( \crk,
 	Pmono(
-		\fmMMCAsr,
-		\amp,0.1,
-		[\midinote,\dur], Ptuple([
-			Pseq(([0, -2]!7).flatten++[2,3]) + [72],
-			Pseq([0.5],16)
-			], inf),
-		// Ptuple([ 
-		// 	Pseq([0,-2,3,5]) + 60 + [0,3,7,10], //FREQ
-		// 	1 * 0.5], //DUR
-		// 	inf ),
-		// []
-		\modRatio1,Pwhite(50.0,100.0) * 0.5,
-		\modRatio2,Pwhite(50.0,100.0) * 0.5,
-		\index1,Pwhite(50.0,100.0) * 0.5,
-		\index2,Pwhite(50.0,100.0) * 0.5
+		'smp.asr2',
+		\bufnum, b.noise.glitch[0],
+		\loop,1,
+		\rate, Pwhite(0.1,2.0),
+		\lag,2,
+		\dur,Pwhite(2.0,4.0)
+		) 
+	);
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+\dolSong @ (
+	\dolCascade |? [
+	\dur, { Prand([0.25,0.125],inf)},
+	\legato, {Pwhite(0.25,0.5) * 5},
+	\freq, {Pseq([0,4,7,11], inf)+  ( Pwhite(6,6) * 12)},
+	\detune, {0.1}
+	]
+);
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+\loline.q_(8) @ (
+	Pdef(\loline,
+			PbindProxy(
+				\instrument, \bass,
+				\midinote, Prand([0,2,4,7,11,14],inf) + 31,
+				\dur, Pseq([8]),
+				\amp,0.5
+				\rel, Pfunc(|e| e.dur * e.legato)
+				)
+		)
 	)
-)
-//--------------------------------------------------------------
-\bassDrive2.asP_(
-	Pseq([
-	Pseq([\bassDrive.asP],2.rand +1),
-	Event.silent(10.rand+1)
-	// \bassDrive.asP
-	],inf)
-).q_(8).p
-
-//--------------------------------------------------------------
-
-Pdef(\natsuFDP, 
-	Pdef(\natsuFDP)
-)
-
-//--------------------------------------------------------------
-
-
-
-
-
-
-Pdef(\natsu,
-	Pmono(
-		\fmMMCAsr,
-		\amp,0.1,
-		\modRatio1,Pwhite(1,10),
-		\modRatio2,Pwhite(1,10),
-		\index1,Pwhite(1,10),
-		\index2,Pwhite(1,10)
-	)
-	>< ('natsu_trill' |? [\midinote, _ + [0,3,7,10] ])
-).play;
-
-//--------------------------------------------------------------
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+\noiseLine.q_(0) @ { 
+	var line;
+	line = XLine.kr(0.001,1, 0.1);
+	LPF.ar(
+		WhiteNoise.ar(line * 0.02),
+		line * 18000 + 40
+		)
+}

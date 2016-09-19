@@ -9,9 +9,6 @@ var clips;
 var loops;
 var dir, loopDir;
 
-b[\load] = {
-		"~/Live/setup/loadJDSounds.scd".standardizePath.loadPaths;
-	};
 // LOAD SOUNDS
 if(b.notNil,{
 		b.do{|sub|
@@ -84,9 +81,11 @@ loops.entries.do{|tempo|
 		}
 
 	}
-}
+};
 
 //LiveInput Recordings
-b[\live] = LiveInput.recordings
+if (LiveInput.recordings.size>0){ 
+	b[\live] = LiveInput.recordings
+}
 
 )

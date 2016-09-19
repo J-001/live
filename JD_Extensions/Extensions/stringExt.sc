@@ -39,7 +39,7 @@
 //-----------------------------------------------------------------------
 + Symbol {
 
-	asWords {this.asSting.asWords}
+	asWords {^this.asString.asWords}
 
 }
 //-----------------------------------------------------------------------
@@ -61,23 +61,5 @@
 		} {
 			^false
 		}
-	}
-	
-	jdAbbreviations {|longVersion|
-		var dct = ();
-		var shortVersion;
-		
-		dct = (
-			//SMP CONTROLS
-			\rate : \rt,
-			\startPos : \sPos,
-			\loop : \lp
-			);
-
-		if (dct[longVersion].isNil) {
-			^shortVersion = longVersion;
-		}	{
-			^shortVersion = dct[longVersion.asSymbol]
-		};
 	}
 }

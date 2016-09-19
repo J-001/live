@@ -11,7 +11,7 @@ Ndef(\spaceverb, {|
 	numComb = 10; // number of comb delays
 	numAllpass = 10; // number of allpass delays
 
-	in = \in.ar([0,0]);
+	in = \pre_in.ar([0,0]);
 	// reverb predelay:
 	z = DelayN.ar(in, 0.01,0.01);
 

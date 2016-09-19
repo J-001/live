@@ -4,6 +4,262 @@
 		"selected_items":
 		[
 			[
+				"env",
+				"envseq"
+			],
+			[
+				"in",
+				"input"
+			],
+			[
+				"bl",
+				"bloop"
+			],
+			[
+				"dol",
+				"dolCascade"
+			],
+			[
+				"breakPoit",
+				"breakPoints"
+			],
+			[
+				"brek",
+				"breakPoint"
+			],
+			[
+				"line",
+				"linEnd"
+			],
+			[
+				"root",
+				"rootReg"
+			],
+			[
+				"lin",
+				"linBegin"
+			],
+			[
+				"breakPoin",
+				"breakPoints"
+			],
+			[
+				"bre",
+				"breakPoint"
+			],
+			[
+				"b",
+				"breakChar"
+			],
+			[
+				"patt",
+				"pattObj"
+			],
+			[
+				"met",
+				"method"
+			],
+			[
+				"pattern",
+				"patternpairs"
+			],
+			[
+				"contr",
+				"controlKeysValues"
+			],
+			[
+				"cont",
+				"controlKVPairs"
+			],
+			[
+				"methd",
+				"methods"
+			],
+			[
+				"Remove",
+				"removeUniqueMethods"
+			],
+			[
+				"con",
+				"controlKeysValues"
+			],
+			[
+				"tem",
+				"template"
+			],
+			[
+				"prA",
+				"prAddControlMethods"
+			],
+			[
+				"PBind",
+				"PbindProxy"
+			],
+			[
+				"controlKe",
+				"controlKeys"
+			],
+			[
+				"fa",
+				"fadeTime"
+			],
+			[
+				"dolph",
+				"dolphGtr"
+			],
+			[
+				"spd",
+				"spdGtr"
+			],
+			[
+				"Allpass",
+				"AllpassN"
+			],
+			[
+				"All",
+				"AllpassN"
+			],
+			[
+				"do",
+				"dolphArp"
+			],
+			[
+				"doph",
+				"dolph_arp_c"
+			],
+			[
+				"cr",
+				"crackle"
+			],
+			[
+				"freq",
+				"freqDrop"
+			],
+			[
+				"fre",
+				"freqLo"
+			],
+			[
+				"~",
+				"~ratios"
+			],
+			[
+				"pd",
+				"pdef	pdef"
+			],
+			[
+				"sde",
+				"sdef	sdef"
+			],
+			[
+				"sus",
+				"sustainCar"
+			],
+			[
+				"bass",
+				"bass_drive"
+			],
+			[
+				"filt",
+				"filteredPairs"
+			],
+			[
+				"Pbind",
+				"PbindProxy"
+			],
+			[
+				"natsu",
+				"natsu_trill"
+			],
+			[
+				"Pbin",
+				"PbindProxy"
+			],
+			[
+				"fun",
+				"funcKeyPairs"
+			],
+			[
+				"PAtte",
+				"PatternProxy"
+			],
+			[
+				"ASP",
+				"asP"
+			],
+			[
+				"nats",
+				"natsu_trill"
+			],
+			[
+				"Pattern",
+				"PatternProxy"
+			],
+			[
+				"asP",
+				"asPairs"
+			],
+			[
+				"ee",
+				"element"
+			],
+			[
+				"il",
+				"illegalKeys"
+			],
+			[
+				"fil",
+				"filteredPairs"
+			],
+			[
+				"filter",
+				"filteredList"
+			],
+			[
+				"sym",
+				"symbolFilter"
+			],
+			[
+				"func",
+				"funcKeyPair"
+			],
+			[
+				"pairs",
+				"pairsDo"
+			],
+			[
+				"midi",
+				"midinote"
+			],
+			[
+				"or",
+				"originalArgs"
+			],
+			[
+				"nat",
+				"natsuOsc"
+			],
+			[
+				"summ",
+				"summerGlide"
+			],
+			[
+				"back",
+				"background_"
+			],
+			[
+				"bar",
+				"bars"
+			],
+			[
+				"bea",
+				"beats"
+			],
+			[
+				"nk",
+				"nkConfFunc"
+			],
+			[
 				"for",
 				"folderName"
 			],
@@ -44,10 +300,6 @@
 				"chan"
 			],
 			[
-				"in",
-				"input"
-			],
-			[
 				"cla",
 				"class	Class"
 			],
@@ -84,10 +336,6 @@
 				"SymbolConverter"
 			],
 			[
-				"or",
-				"originalEnvir"
-			],
-			[
 				"Li",
 				"LiveInput"
 			],
@@ -112,28 +360,8 @@
 				"removeUniqueMethods"
 			],
 			[
-				"cont",
-				"control"
-			],
-			[
-				"sym",
-				"symbolWithExt"
-			],
-			[
-				"con",
-				"controlProxies"
-			],
-			[
 				"paris",
 				"pairsDo"
-			],
-			[
-				"controlKe",
-				"controlKeysValues"
-			],
-			[
-				"fun",
-				"functionToProxy"
 			],
 			[
 				"pr",
@@ -148,16 +376,8 @@
 				"selfType"
 			],
 			[
-				"cr",
-				"currentEnvironment"
-			],
-			[
 				"post",
 				"postln"
-			],
-			[
-				"line",
-				"lineBefore"
 			],
 			[
 				"tra",
@@ -232,16 +452,8 @@
 				"romance"
 			],
 			[
-				"~",
-				"~romance"
-			],
-			[
 				"sour",
 				"source"
-			],
-			[
-				"bass",
-				"bassLong"
 			],
 			[
 				"ro",
@@ -258,10 +470,6 @@
 			[
 				"run",
 				"run_command"
-			],
-			[
-				"nk",
-				"nkcc	nkcc"
 			],
 			[
 				"store",
@@ -306,246 +514,11 @@
 			[
 				"In",
 				"instruments"
-			],
-			[
-				"dl",
-				"delay2"
-			],
-			[
-				"rot",
-				"route"
-			],
-			[
-				"syncBa",
-				"syncBassline1"
-			],
-			[
-				"xpl",
-				"xplodeLong"
-			],
-			[
-				"settin",
-				"settings"
-			],
-			[
-				"kv",
-				"kvPairs"
-			],
-			[
-				"nkC",
-				"NKConf"
-			],
-			[
-				"n",
-				"nkon	nkon"
-			],
-			[
-				"char",
-				"charCount"
-			],
-			[
-				"class",
-				"classvar"
-			],
-			[
-				"fre",
-				"freqK"
-			],
-			[
-				"Midi",
-				"MIDIIn"
-			],
-			[
-				"pd",
-				"pd	Pdef"
-			],
-			[
-				"pb",
-				"pbindfs"
-			],
-			[
-				"out",
-				"outChar"
-			],
-			[
-				"stor",
-				"storeCS"
-			],
-			[
-				"sto",
-				"storePath"
-			],
-			[
-				"v",
-				"vib"
-			],
-			[
-				"r",
-				"rhodesChorus"
-			],
-			[
-				"rhod",
-				"rhodesVib"
-			],
-			[
-				"rh",
-				"rhodes"
-			],
-			[
-				"rhodes",
-				"rhodesChorus"
-			],
-			[
-				"cho",
-				"choruscompress"
-			],
-			[
-				"t",
-				"tempodefault	TempoClock.default.tempo"
-			],
-			[
-				"ui",
-				"uidCounter"
-			],
-			[
-				"Sy",
-				"SynthDescLib"
-			],
-			[
-				"di",
-				"distort"
-			],
-			[
-				"py",
-				"pyFunc"
-			],
-			[
-				"fs",
-				"fsKey"
-			],
-			[
-				"cc",
-				"ccFunc"
-			],
-			[
-				"dc",
-				"dictFromArrays"
-			],
-			[
-				"q",
-				"quote"
-			],
-			[
-				"toggl",
-				"toggles"
-			],
-			[
-				"wr",
-				"writeToOut"
-			],
-			[
-				"freq",
-				"freqs"
-			],
-			[
-				"fr",
-				"fracCut"
-			],
-			[
-				"bassGli",
-				"bassGlide1"
-			],
-			[
-				"glid",
-				"bassGlide1"
-			],
-			[
-				"xplode",
-				"xplode2"
-			],
-			[
-				"speci",
-				"specify"
-			],
-			[
-				"nme",
-				"name"
-			],
-			[
-				"spe",
-				"specifiedProxy"
-			],
-			[
-				"cle",
-				"clearSpecs"
-			],
-			[
-				"fa",
-				"fadeTime"
-			],
-			[
-				"dic",
-				"dictContainsSpec"
-			],
-			[
-				"Serv",
-				"Server"
-			],
-			[
-				"set",
-				"setup	setup"
-			],
-			[
-				"se",
-				"setup	setup"
-			],
-			[
-				"frac",
-				"fracDust"
-			],
-			[
-				"pdef",
-				"pdef	pdef"
-			],
-			[
-				"rout",
-				"routes"
-			],
-			[
-				"val",
-				"valdict"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"contents": "\nn.clearSettings\n//-----------------------------------------------------------------------\n//-----------------------------------------------------------------------\n\n",
-			"file": "livespace/main.scd",
-			"file_size": 200,
-			"file_write_time": 131180198460000000,
-			"settings":
-			{
-				"buffer_size": 166,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "livespace/score.scd",
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "JD_Extensions/Controller/NK2/settings.scd",
-			"settings":
-			{
-				"buffer_size": 165,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -555,9 +528,13 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "in",
+		"last_filter": "packa",
 		"selected_items":
 		[
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
 			[
 				"in",
 				"Package Control: Install Package"
@@ -599,7 +576,7 @@
 				"Package Control: Remove Package"
 			]
 		],
-		"width": 392.0
+		"width": 368.0
 	},
 	"console":
 	{
@@ -620,39 +597,81 @@
 		"menu_visible": true,
 		"show_minimap": false,
 		"show_open_files": false,
-		"show_tabs": false,
+		"show_tabs": true,
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
 	"file_history":
 	[
-		"/Users/JDMuschett/Live/setup/init.scd",
+		"/Users/JDMuschett/Live/livespace/headers.scd",
+		"/Users/JDMuschett/Live/livespace/score.scd",
+		"/Users/JDMuschett/Live/livespace/main.scd",
+		"/Users/JDMuschett/Live/livespace/beta.scd",
+		"/Users/JDMuschett/JD_SCExtensions/Extensions/Mark.sc",
 		"/Users/JDMuschett/Live/JD_Extensions/Controller/NK2/settings.scd",
+		"/Users/JDMuschett/Live/JD_Extensions/SystemOverwrites/nodeProxyExt.sc",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Audio/Env.sc",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/JITLib/Patterns/Pdef.sc",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Streams/Patterns.sc",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Streams/ListPatterns.sc",
+		"/Users/JDMuschett/Live/JD_Extensions/Extensions/Penv/Penv.sc",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/newLineRoot.py",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/SuperCollider/SuperCollider.py",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/pstore_2_uc.py",
+		"/Users/JDMuschett/Live/livespace/screen4.scd",
+		"/Users/JDMuschett/Live/JD_Extensions/Extensions/NKConfig.sc",
+		"/Users/JDMuschett/Live/livespace/screen3.scd",
+		"/Users/JDMuschett/Live/setup/init.scd",
+		"/Users/JDMuschett/Live/JD_Extensions/SystemOverwrites/SymbolConversion/SymbolConversionManager.sc",
+		"/Users/JDMuschett/Live/JD_Extensions/Extensions/stringExt.sc",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/JITLib/ProxySpace/NodeProxy.sc",
+		"/Users/JDMuschett/Live/instruments/fracDust/material.scd",
+		"/Users/JDMuschett/Live/filters/dreamverb.scd",
+		"/Users/JDMuschett/Live/instruments/bass/inst.scd",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Core/Kernel.sc",
 		"/Users/JDMuschett/Live/JD_Extensions/Controller/NK2/NK2.sc",
+		"/Users/JDMuschett/Live/instruments/smp/inst.scd",
+		"/Users/JDMuschett/Live/instruments/fmPiano/inst.scd",
+		"/Users/JDMuschett/Live/setup/loadJDSounds.scd",
+		"/Users/JDMuschett/Live/instruments/eKit/material.scd",
+		"/Users/JDMuschett/Live/instruments/eKit/inst.scd",
+		"/Users/JDMuschett/Live/JD_Extensions/Extensions/LiveInput/LiveInput.sc",
+		"/Users/JDMuschett/Live/sketches/rough/sketch_29_05_16.scd",
+		"/Users/JDMuschett/Live/sketches/natsu3/rhythm_2.scd",
+		"/Users/JDMuschett/Live/sketches/rough/sketch_01_07_16.scd",
+		"/Users/JDMuschett/Live/sketches/rough/sketch_23_5_16.scd",
+		"/Users/JDMuschett/Live/sketches/rough/sketch_02_07_16.scd",
+		"/Users/JDMuschett/Live/sources/fmc1m18.scd",
+		"/Users/JDMuschett/Live/sources/pianogliss.scd",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Distraction Free.sublime-settings",
+		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/SuperCollider.sublime-settings",
+		"/Users/JDMuschett/Live/instruments/bass/material.scd",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Core/Symbol.sc",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Streams/PmonoStreams.sc",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Core/AbstractFunction.sc",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Core/Function.sc",
+		"/Users/JDMuschett/Live/instruments/fmMMC/material.scd",
+		"/Users/JDMuschett/Live/JD_Extensions/SystemOverwrites/extObject.sc",
+		"/Users/JDMuschett/Live/instruments/fmMMC/inst.scd",
+		"/Users/JDMuschett/Live/instruments/temp/inst.scd",
+		"/Users/JDMuschett/Live/sources/sketch_1.scd",
+		"/Users/JDMuschett/Live/instruments/temp/material.scd",
+		"/Users/JDMuschett/Live/sources/detunedSynth.scd",
+		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Control/SystemActions.sc",
 		"/Users/JDMuschett/Live/JD_Extensions/Controller/NK2/nkClearLayout.py",
 		"/Users/JDMuschett/Live/Controller/settings.scd",
 		"/Users/JDMuschett/Live/JD_Extensions/Controller/NK2/nkLayout.py",
 		"/Users/JDMuschett/Live/JD_Extensions/Controller/nkLayout.py",
-		"/Users/JDMuschett/Live/livespace/main.scd",
-		"/Users/JDMuschett/Live/JD_Extensions/Extensions/LiveInput/LiveInput.sc",
-		"/Users/JDMuschett/Live/JD_Extensions/SystemOverwrites/SymbolConversion/SymbolConversionManager.sc",
-		"/Users/JDMuschett/Live/setup/loadJDSounds.scd",
 		"/Users/JDMuschett/Live/setup/diskout.scd",
-		"/Users/JDMuschett/Live/JD_Extensions/SystemOverwrites/nodeProxyExt.sc",
-		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/Users/JDMuschett/Live/JD_Extensions/SystemOverwrites/extObject.sc",
 		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/JITLib/ProxySpace/ProxySpace.sc",
-		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/JITLib/ProxySpace/NodeProxy.sc",
-		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/JITLib/Patterns/Pdef.sc",
 		"/Users/JDMuschett/Live/JD_Extensions/Extensions/SymbolConversion/SymbolConversionManager.sc",
 		"/Users/JDMuschett/Library/Application Support/SuperCollider/Extensions/classes/LiveInput.sc",
 		"/Users/JDMuschett/Live/JD_SCExtensions/README.md",
 		"/Users/JDMuschett/JD_SCExtensions/SystemOverwrites/nodeProxyExt.sc",
 		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Core/Object.sc",
 		"/Users/JDMuschett/JD_SCExtensions/Extensions/nodeProxyExt.sc",
-		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
-		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Core/Symbol.sc",
-		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Core/Kernel.sc",
 		"/Users/JDMuschett/JD_SCExtensions/Extensions/extKernel.scd",
 		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Files/File.sc",
 		"/Users/JDMuschett/JD_SCExtensions/Extensions/stringExt.sc",
@@ -663,36 +682,28 @@
 		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Colorsublime-Themes/Monochrome.tmTheme",
 		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Colorsublime-Themes/Carbonnight.tmTheme",
 		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Colorsublime-Themes/QuietLight.tmTheme",
-		"/Users/JDMuschett/Live/instruments/smp/inst.scd",
-		"/Users/JDMuschett/Live/livespace/score.scd",
 		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/copyToScore.py",
 		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/nkCurrentConf.py",
 		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/SuperCollider.sublime-keymap",
 		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/supercollider-sublime/Default (OSX).sublime-keymap",
 		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
 		"/Users/JDMuschett/Live/Controller/nkLayout.py",
-		"/Users/JDMuschett/Live/instruments/fracDust/material.scd",
-		"/Users/JDMuschett/Live/instruments/bass/material.scd",
 		"/Users/JDMuschett/Live/sketches/live/score0.scd",
 		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/JDplugins/pdefStore.py",
 		"/Users/JDMuschett/Live/instruments/bass/nk_conf.scd",
 		"/Users/JDMuschett/JD_SCExtensions/Extensions/NKConfig.sc",
 		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/psmp.sublime-snippet",
-		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Core/AbstractFunction.sc",
 		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Collections/Collection.sc",
 		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Collections/Set.sc",
 		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Collections/Event.sc",
 		"/Users/JDMuschett/Live/instruments/filters/cutmix.scd",
-		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/SuperCollider.sublime-settings",
 		"/Users/JDMuschett/Live/instruments/fracDust/inst.scd",
 		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/nkon.sublime-snippet",
-		"/Users/JDMuschett/Live/sketches/rough/sketch_29_05_16.scd",
 		"/Users/JDMuschett/Live/Controller/nkTemplateSettings.scd",
 		"/Users/JDMuschett/Live/instruments/xplode/material.scd",
 		"/Users/JDMuschett/Live/store/pstore.scd",
 		"/Users/JDMuschett/Live/instruments/xplode/src.scd",
 		"/Users/JDMuschett/Live/instruments/fmPulse/nk_conf.scd",
-		"/Users/JDMuschett/Live/instruments/bass/inst.scd",
 		"/Users/JDMuschett/Live/instruments/osc/pulse.scd",
 		"/Users/JDMuschett/JD_SCExtensions/Extensions/extFunction.sc",
 		"/Users/JDMuschett/JD_SCExtensions/Extensions/ArrayContains.sc",
@@ -719,45 +730,11 @@
 		"/Users/JDMuschett/Live/sketches/natsu2/bassOctaves.scd",
 		"/Users/JDMuschett/Live/sketches/waveSynth/multiWavetable.scd",
 		"/Users/JDMuschett/Live/sources/noisewave.scd",
-		"/Users/JDMuschett/Live/sources/melody.scd",
-		"/Users/JDMuschett/Live/instruments/osc/rhodes.scd",
-		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Control/MIDIOut.sc",
-		"/Users/JDMuschett/JD_SCExtensions/Extensions/include.sc",
-		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/ndef.sublime-snippet",
-		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/pdef.sublime-snippet",
-		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/pplay.sublime-snippet",
-		"/Users/JDMuschett/Live/store/storeFunc.py",
-		"/Users/JDMuschett/Live/Controller/storeSettings.scd",
-		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/JDplugins/helloWorld.py",
-		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/JITLib/ProxySpace/ProxyInterfaces.sc",
-		"/Users/JDMuschett/Live/instruments/wave/nwave.scd",
-		"/Users/JDMuschett/Live/instruments/mod/lfo.scd",
-		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/nks.sublime-snippet",
-		"/usr/local/bin/faust2caqt",
-		"/Users/JDMuschett/Live/Controller/pyOutputLayout.py",
-		"/Users/JDMuschett/Live/instruments/fmPulse/fmPulse.scd",
-		"/Users/JDMuschett/Live/instruments/sampler/smp.scd",
-		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Audio/SynthDesc.sc",
-		"/Users/JDMuschett/JD_SCExtensions/Extensions/Faust/supercolliderdir/reverb_designer.sc",
-		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/stp.sublime-snippet",
-		"/Users/JDMuschett/Library/Application Support/SuperCollider/Extensions/SC3plugins/JoshUGens/classes/Class Files/BiquadEQ.sc",
-		"/Users/JDMuschett/Library/Application Support/SuperCollider/downloaded-quarks/crucial-library/Instr/Patch.sc",
-		"/Users/JDMuschett/Live/sketches/live/SuperCollider - Post.sc",
-		"/Users/JDMuschett/Live/Controller/controllerSettings.scd",
-		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Collections/String.sc",
-		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Control/SystemActions.sc",
-		"/Users/JDMuschett/Live/sketches/live/settings.scd",
-		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Unix/UnixFILE.sc",
-		"/Users/JDMuschett/Live/setup/instruments/osc/pulse.scd",
-		"/Users/JDMuschett/Live/Controller/functionToScreen.py",
-		"/Users/JDMuschett/Library/Application Support/Sublime Text 3/Packages/User/Snippets/JDSnippets/nkoff.sublime-snippet",
-		"/Users/JDMuschett/Live/setup/instruments/osc/nmap.scd",
-		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Core/Error.sc",
-		"/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/JITLib/ProxySpace/NodeMap.sc"
+		"/Users/JDMuschett/Live/sources/melody.scd"
 	],
 	"find":
 	{
-		"height": 22.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -776,134 +753,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"NK2",
-			"Controller",
-			"/Users/JDMuschett/Live/Controller/nkLayout.py",
-			"Controller",
-			"NK2",
-			"@\n",
-			"Live",
-			"postln",
-			"recordings[folderName]",
-			"postln",
-			"thisMethod",
-			"self",
-			"buf",
-			"folderName",
-			"keyFolder",
-			"folder",
-			"recordings",
-			"var",
-			"liveIn",
-			"done",
-			"instacne",
-			"this",
-			"symbol",
-			"inputConvFuncs",
-			"func",
-			"addMethodConvFunc",
-			"method",
-			"channelsArray",
-			"channelsArraycha",
-			"channelsArray",
-			"aChan",
-			"play",
-			"typeWrapFunc",
-			"inputConvFunc",
-			"InstanceFuncs",
-			"extConvFuncs",
-			"InstanceFuncs",
-			"object",
-			"Object",
-			"functions",
-			"postln",
-			"aChan",
-			"channelsArray",
-			"zeplin",
-			"obj",
-			"value",
-			"arg",
-			"super",
-			"this",
-			"~Live",
-			"timedRecording",
-			"Routine",
-			"aDur",
+			"t.",
+			"schedAbs",
+			"ceil",
+			"TempoClock",
+			"schedAbs",
+			"amp",
+			"schedAbs",
+			"set",
+			"train",
+			"Array",
 			"dur",
-			"Synth",
-			"write",
-			"writeMsg",
-			"RecordBuf",
-			"write",
-			"RecordBuf",
-			"aDur",
-			"write",
-			"SimpleNumber",
-			"true",
-			"this",
-			"class",
-			"read",
-			"aStar",
-			"aDur",
+			"asr",
+			"Pkey(",
+			"asr",
+			"lvl",
+			"Pattern",
+			"streamArg",
 			"postln",
-			"Server",
-			"end",
-			"plotTree",
-			"recordings",
-			"this",
-			"instance",
-			"read",
-			"index",
-			"AIFF",
-			"WAVE",
-			"write",
-			"fullPath",
-			"recTitle",
-			"fullPath",
-			"PathName",
-			"tes",
-			"recTitle",
-			"diskout",
-			"bus",
-			"DiskOut",
-			"recordingDestinationRoot",
-			"recBuf",
-			"nextPowerOf2",
-			"this",
-			"aName",
-			"selfType",
-			"class",
-			"postln",
-			"pos§tln",
-			"symbolWithExtU",
-			"addTypeExt",
-			"addExtConvFunc",
-			"addTypeExt",
-			"typeFuncs",
-			"_p",
-			"_P",
-			"ProxySpace",
-			"Pdef",
-			"}\n",
-			"ProxySpace",
-			"selfType",
-			"Pdef",
-			"root",
-			"defaultConv",
-			"currentEnvironment",
-			"Ndef",
-			"ProxySpace",
-			"asSymbol",
-			"SymbolConversionManager",
-			"SymbolConverter",
-			"SymbolConversionManager",
-			"this",
-			"NodeProxy",
-			"postln",
-			"checkExt",
+			"EventPatternPr",
+			"PatternProxy",
+			"Pseq",
+			"function",
+			"wrap",
+			"asFunction",
+			"envseq",
+			"asEnv",
+			"ObjectSpec",
+			"Pfunc",
 			"func",
-			"asPairs",
-			"asPAirs"
+			"Pfunc",
+			"asr",
+			"offset0",
+			" = ",
+			"levels",
+			"wrapExtend",
+			"Env",
+			"source",
+			"1,",
+			"1,1,1",
+			"1,1",
+			"Pbind",
+			"source",
+			"PatternProxy",
+			"PbindProxy",
+			"play",
+			"var",
+			"group",
+			"in",
+			"asArray",
+			"EnvSpec",
+			"Env",
+			"dolCascade",
+			"Pseq",
+			"play",
+			"Ndef",
+			"midinote",
+			"q_(",
+			"dream",
+			"drea",
+			"deF",
+			"new_line_root",
+			"direction",
+			"len",
+			"breakPoint",
+			"root",
+			"linBe",
+			"Regio",
+			"view",
+			"source",
+			"play",
+			"NamedControl",
+			"play",
+			"cutmixN",
+			"sin",
+			"cutmix",
+			"objects",
+			"cutmix",
+			"crackle",
+			"gtrPl",
+			"cut_mix",
+			"cutmix",
+			"sin",
+			"clear",
+			"play",
+			"stop",
+			"play",
+			"stop",
+			"basic",
+			"crackle",
+			"gtrPlay",
+			"Ndef",
+			"source",
+			"dolph",
+			"clear",
+			"load",
+			"Ndef",
+			"crackle",
+			"natsu",
+			"Ndef",
+			"global",
+			"instrument",
+			"Pmono",
+			"suppress_word_completions",
+			"true",
+			"spdGtr",
+			"smp",
+			".nd",
+			"postln",
+			";\n",
+			"postln",
+			"play",
+			"gtrPlay",
+			"crackle",
+			"PdefAll",
+			"obj",
+			"source_",
+			"><",
+			"group",
+			"objects",
+			"group",
+			"NdefMixer",
+			"index",
+			"postln",
+			"array",
+			"postln",
+			"source",
+			"postln",
+			"controlKeysValues"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -911,6 +888,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"viewregion",
+			"]",
 			"(\"PREDICTED DISTORTION LEVEL: \"+ (100.0.rand).asString +\"%.\").postln;",
 			""
 		],
@@ -923,106 +902,33 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "livespace/main.scd",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 166,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								166,
-								166
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/User/SuperCollider.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
 			]
 		},
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 1,
-					"file": "livespace/score.scd",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/User/SuperCollider.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				}
 			]
 		},
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 2,
-					"file": "JD_Extensions/Controller/NK2/settings.scd",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 165,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								165,
-								165
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/User/SuperCollider.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
 			]
 		}
 	],
@@ -1042,7 +948,13 @@
 				0,
 				0,
 				1,
-				1
+				2
+			],
+			[
+				2,
+				0,
+				3,
+				3
 			],
 			[
 				1,
@@ -1051,22 +963,37 @@
 				1
 			],
 			[
+				1,
+				1,
 				2,
+				4
+			],
+			[
 				0,
+				2,
+				1,
+				4
+			],
+			[
+				2,
 				3,
-				1
+				3,
+				4
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.388729965453,
-			0.743314444221,
+			0.333333333333,
+			0.691813151042,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
+			0.399321850114,
+			0.480748720137,
+			0.537631541524,
 			1.0
 		]
 	},
@@ -1102,14 +1029,14 @@
 	},
 	"select_symbol":
 	{
-		"height": 0.0,
+		"height": 67.0,
 		"last_filter": "",
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 392.0
 	},
-	"selected_group": 1,
+	"selected_group": 5,
 	"settings":
 	{
 	},
@@ -1117,7 +1044,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 207.0,
+	"side_bar_width": 123.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

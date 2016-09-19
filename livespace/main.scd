@@ -1,51 +1,58 @@
-"~/Live/setup/init.scd".loadPaths
-//BeginClockGui
-Pbind(
-	\type, Pseq([\beginConductor]),
-).play(quant:4)
-
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 
-i.load(\bass,\natsu)
-i.mat(\bass,\natsu)
-
-\natsu_P.q_(8).p;
-
-\bassDrive.asP_(
-	Pseq([
-	\bass_drive
-	],inf)
-).q_(8).p;
-
-\natsuTrill.asP_(
-	\natsu
-	>< (\natsu_trill |? [
-			\midinote, _ + [0,3,7,10,14,17],
-			'amp', 0.5
-		])
-	// >< 'natsu_ride'
-).p
-
-a = PbindProxy()
 (
+	a = AreaPlan(t);
+	a.make(
+	[\intro, [1,1,1,1,1,1,1,1]]
+	);
 
-(a <> \natsu_trill).play
+	{|dur| 
+		{SinOsc.ar*0.1 * EnvGen.kr(Env.triangle(dur),doneAction:2)}.play
+	}.fromTo(2,4,{"done".postln})
+)
 
-
- b  |? [\midinote, _ + [0,3,7,10]] ).p
-
-
-
-
-
-
-
-
+a.begin
 
 
 
+\radio.q_(0) @ Pdef(\radioNoise)
 
 
+\radio.p;
+
+a.areas[0].fromTo(2,4,{|dur|
+	{ SinOsc.ar*0.1 * EnvGen.kr(Env.triangle(dur),doneAction:2)}.play;
+})
+
+{
+	SinOsc.ar  * EnvGen.kr(Env.triangle(_), doneAction: 2)
+}.fromTo(2,4,{
+
+	})
+
+a[4].until
+a.current.name
+	{ SinOsc.ar*0.1 * Line.kr(0,1,a.current.current.until)}.play;
+
+/*
+	Quantization To Background Structure
+*/
+
+a.current.current
 
 
+[NodeProxy, Pattern].targetMode_();
+
+\every, current + 1
+\skip , current + 2
+\skip , current + rand(1,3)
+\only, 86
+\near, duration.findNearest
+
+
+\radio.amp_({Line.kr(0,1,a[3].until)})
+
+a.current.name
+
+a[\intro][7]

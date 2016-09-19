@@ -2,22 +2,16 @@
 	"folders":
 	[
 		{
-			"path": "sketches"
+			"path": "instruments"
+		},
+		{
+			"path": "setup"
 		},
 		{
 			"path": "livespace"
 		},
 		{
-			"path": "instruments"
-		},
-		{
 			"path": "filters"
-		},
-		{
-			"path": "sources"
-		},
-		{
-			"path": "setup"
 		}
 	]
 }

@@ -37,10 +37,11 @@ SynthDef(\c1m18, {|
 
 Pdef(\harmonics,
 	Pbind(
+	// \type, Prand([\note],inf),
 	\instrument,\c1m18,
 	\amp,1,
-	\midinote, [1,1.5,2]* Pseq([Pseq(~arp[0]!16),Pseq(~arp[1..4])],inf)-0,
-	\dur,Prand((1..2)*0.125,inf)
+	\midinote, 20,
+	\dur,Prand((1..4)*0.125,inf)
 	)
 );
 

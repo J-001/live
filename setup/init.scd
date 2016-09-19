@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-(
-	
+(	
+	s.boot;
 	//SET UPHORIA as AUDIO DEVICE
 	if (ServerOptions.devices.contains("UMC404HD 192k")) {
 		s.options.inDevice_("UMC404HD 192k");
@@ -15,13 +15,13 @@
 		s.reboot;}
 	);
 
-	a = (); //AUDIO PROXIES
-	k = (); //CONTROL PROXIES
+	x = nil; //quick nil
+	a = AreaPlan();
 
 	b = (); //BUFFERS
-	b[\load] = {
-		"~/Live/setup/loadJDSounds.scd".standardizePath.loadPaths;
-	};
+	// b[\load] = {
+	// 	"~/Live/setup/loadJDSounds.scd".standardizePath.loadPaths;
+	// };
 	p = (); //patterns
 	i = (); //instruments
 	i[\load] = {|function ... names|
@@ -48,12 +48,17 @@
 				n[\cycle].on_({ NKConf.clear; n.clearSettings});
 		}, \NKConf);
 	};
+	c = ();
+	c[\refresh] = {
+				n[\fwdMarker].on_({ NKConf.fwd});
+				n[\bkMarker].on_({ NKConf.back});
+				n[\setMarker].on_({ NKConf.set});
+				n[\cycle].on_({ NKConf.clear; n.clearSettings});
+	};
 	
-	u = (); //NKinstrumentSETTINGS
-	t = TempoClock(60/60).permanent_(true); //TEMPO
-
-	// nil shorthand
-	x = nil;
+	t = ();
+	t[\default] = TempoClock.default;
+	t[\a] = TempoClock(60/60).permanent_(true); //TEMPO
 
 	//SPECS
 	Spec.add(\legato, ScalarSpec(0.001, 10, \linear, 0, 1));
@@ -64,7 +69,7 @@
 	//EFFECTS
 	Spec.add(\mix, [0,1, \linear, 0, 0.333]);
 	//ENV
-	Spec.add(\atk,[0.001,30, 2]);
+	Spec.add(\env,EnvSpec(Env.newClear(8)));
 	//JPVerb
 	Spec.add(\t60, [0.1, 60, \exp]);
 	Spec.add(\damp, [0, 1]);
@@ -83,43 +88,66 @@
 	// (s.serverRunning==false).if({s.plotTree});
 
 //MetroNome
-t = ();
-(
-	t[\basic] = ();
-	t[\basic][\tempo] = 1;
-	t[\basic][\window] = Window("TEMPO:"+"Basic", Rect(1440-300,100,300,100));
-	t[\basic][\window].background_(Color(0.25,0.25,0.25));
-	t[\basic][\window].alpha_(1);
-	t[\basic][\window].alwaysOnTop_(true);
-	t[\basic][\text] = TextView(t[\basic][\window].asView, Rect(40, 20, 200, 50));
-	t[\basic][\text].editable_(false);
-	t[\basic][\beats] = 4;
-	t[\basic][\bars] = 4;
-	t[\basic][\metro] =  { 
-		t[\basic][\window].front;
-		Routine({
-		100.do {|n|
-			t[\basic][\bars].do{|bar|
-				t[\basic][\beats].do{|beat|
-					var string = "\tbar :" + bar.asString++"\n"
-						"\tbeat :" + beat.asString;
-					t[\basic][\text].setString(
-						string,
-						0,
-						string.size
-						);
-					t[\basic][\text].stringColor_(Color(0.75,0.75,0.75));
-					t[\basic][\text].background_(Color(0.25,0.25,0.25));
-					1.wait;
-				};		
-			};
-		}
-		});
-};
+// t = ();
+// (
+// 	t[\basic] = ();
+// 	t[\basic][\tempo] = 1;
+// 	t[\basic][\window] = Window("TEMPO:"+"Basic", Rect(1440-300,100,300,100));
+// 	t[\basic][\window].background_(Color(0.25,0.25,0.25));
+// 	t[\basic][\window].alpha_(1);
+// 	t[\basic][\window].alwaysOnTop_(true);
+// 	t[\basic][\text] = TextView(t[\basic][\window].asView, Rect(40, 20, 200, 50));
+// 	t[\basic][\text].editable_(false);
+// 	t[\basic][\beats] = 4;
+// 	t[\basic][\bars] = 4;
+// 	t[\basic][\metro] =  { 
+// 		t[\basic][\window].front;
+// 		Routine({
+// 		100.do {|n|
+// 			t[\basic][\bars].do{|bar|
+// 				t[\basic][\beats].do{|beat|
+// 					var string = "\tbar :" + bar.asString++"\n"
+// 						"\tbeat :" + beat.asString;
+// 					t[\basic][\text].setString(
+// 						string,
+// 						0,
+// 						string.size
+// 						);
+// 					t[\basic][\text].stringColor_(Color(0.75,0.75,0.75));
+// 					t[\basic][\text].background_(Color(0.25,0.25,0.25));
+// 					1.wait;
+// 				};		
+// 			};
+// 		}
+// 		});
+// };
 
-	Event.addEventType(\beginConductor, { AppClock.play(t.basic.metro)  });
+// 	Event.addEventType(\beginConductor, { AppClock.play(t.basic.metro)  });
 		
-)
+// );
+
+~key88 = ();
+~key88.init = {
+	var done = false;
+
+	if (MIDIClient.initialized!=true,{
+			MIDIClient.init;
+			});
+		// Find nanoKONTROL2 in sources
+		MIDIClient.sources.do{|source,n|
+			if (source.device=="Keystation 88") {
+				if (done == false) {
+					"Keystation 88 connected".postln;
+					MIDIIn.connect(n, source);
+					done = true;
+				};
+			};
+		};	
+
+		Ndef(\key88);
+
+		~key88[\notes] = nil!88;
+};
 	
 	
 )

@@ -16,7 +16,7 @@ SynthDef(\fmMMCAsr, {|
 	mod2 = SinOsc.ar(freq * modRatio2, 0,freq * index2)  *  SinOsc.kr(10,0,0.5,0.5);
 	car = SinOsc.ar((freq * carRatio) + mod1 + mod2);
 	car = car * EnvGen.kr(Env.asr(0.01, 1, 0.01), gate, doneAction: done);
-	Out.ar(out,Splay.ar(car) * amp * 0.15);
+	Out.ar(out,Splay.ar(car) * amp.lag(lag) * 0.15);
 }).add;
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------

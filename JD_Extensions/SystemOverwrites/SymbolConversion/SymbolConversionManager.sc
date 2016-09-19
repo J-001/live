@@ -36,6 +36,26 @@ SymbolConverter {
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 + Symbol {
+
+	jdAbbreviations {
+		var dct = ();
+		var shortVersion;
+		
+		dct = (
+			//SMP CONTROLS
+			\rate : \rt,
+			\startPos : \sPos,
+			\loop : \lp
+			);
+
+		if (dct[this].isNil) {
+			^shortVersion = this;
+		}	{
+			^shortVersion = dct[this.asSymbol]
+		};
+	}
+	//-----------------------------------------------------------------------
+	//-----------------------------------------------------------------------
 	
 	checkExt {
 		SymbolConverter.extConvFuncs.pairsDo{| key, typeWrapFunc| 
@@ -65,8 +85,10 @@ SymbolConverter {
 	checkInput {|method ... input|
 
 		var funcs = SymbolConverter.inputConvFuncs[method.asSymbol];
-		if(funcs.isNil) {^nil};
-		if (funcs[\test].(*input)) {
+
+		if( funcs.isNil) {^nil};
+
+		if (funcs[\test].(*input).postln) {
 			var str = this.asString;
 			var strlen = str.size;
 			var root = str[0 .. strlen - 3].asSymbol;
@@ -75,32 +97,36 @@ SymbolConverter {
 
 		^nil
 	}
+
+	postSome{
+		"Symbol".postln;
+	}
 //-----------------------------------------------------------------------
 //-----------------ROUTING-----------------------------------------------
 	//RETURN INPUT
 	<<> {| proxy, key = \in |
 		var self = this.selfType;
-		self.perform('<<>', self, key)
+		self.perform('<<>', proxy, key)
 	}
 
 	<>> {| proxy, key = \in |
 		var self = this.selfType;
-		self.perform('<>>', self, key)
+		self.perform('<>>', proxy, key)
 	}
 	//RETURN ORIGINAL
 	<< { | proxy, key = \in |
 		var self = this.selfType;
-		self.perform('<<', self, key)
+		self.perform('<<', proxy, key)
 	}
 
 	>> { | proxy, key = \in |
 		var self = this.selfType;
-		self.perform('>>', self,  key)
+		proxy.perform('>>', self,  key)
 	}
 
-	rm {|aProxy|
+	rm {|fadeTime ... proxies|
 		var self = this.selfType;
-		self.rm(aProxy)
+		self.rm(fadeTime, *proxies)
 	}
 //--------------NODE CONTROLS--------------------------------------------
 //-----------------------------------------------------------------------
@@ -161,7 +187,8 @@ SymbolConverter {
 		if (obj.isArray) {
 			self = this.asP;
 		};
-		self =  this.checkInput('@', obj, at) ? self;		
+		self =  this.checkInput('@', obj, at) ? self;	
+		self.postln;
 		self.perform('@', obj, at)
 	} 
 	//Copy
@@ -180,10 +207,11 @@ SymbolConverter {
 		var self = this.selfType;
 		self.unset(setArgs)
 	}
-	st {|...setArgs|
+	set {|...setArgs|
 		var self = this.selfType;
-		self.set(setArgs)
+		self.set(*setArgs)
 	}
+
 //-----------------------------------------------------------------------
 //---------------PLAY CONTROLS-------------------------------------------
 	//PLAY

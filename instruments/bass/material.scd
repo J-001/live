@@ -2,9 +2,9 @@
 //-----------------------------------------------------------------------
 // syncBass
 //roo
-Pdef(\syncBassRoot,
+Pdef(\sync_bass_root,
 	PbindProxy(
-		\instrument, \bass,
+		\instrument, \kik,
 		\freq,Pseq([100, 100, 100, 200]),
 		\amp,1,
 		\dur,Pseq([1.5, 1.5, 1.5, 0.5]),
@@ -13,9 +13,9 @@ Pdef(\syncBassRoot,
 	)
 );
 //end
-Pdef(\syncBassEnd, 
+Pdef(\sync_bass_end, 
 	PbindProxy(
-		 \instrument, \bass,
+		 \instrument, \kik,
 		 \rel,1,
 		 \amp,1,
 		 [\freq, \dur], Prand([
@@ -29,8 +29,8 @@ Pdef(\syncBassEnd,
 //main
 Pdef(\syncBass.postln, 
 	Pseq([
-		Pdef(\syncBassRoot),
-		Pdef(\syncBassEnd)
+		Pdef(\sync_bass_root),
+		Pdef(\sync_bass_end)
 	],inf)
 );
 //-----------------------------------------------------------------------
@@ -38,14 +38,14 @@ Pdef(\syncBass.postln,
 Pdef(\r_drive_f,
 	Pwrand([0.5,Pseq([0.75,0.25]*0.5),Pseq([0.25,0.25])],[0.7,0.2,0.1])
 );
-Pdef(\bass_drive,
+Pdef(\kik_drive,
 	 PbindProxy(
-		\instrument, \bass,
-		\freq, [70],
+		\instrument, \kik,
+		\freq, 70,
 		\detune, 0.01,
 		\amp, 0.5,
 		\legato, 2,
-		\dur, \r_drive_f,
+		\dur, Pdef(\r_drive_f),
 		\rel, Pfunc{|e| e.dur * e.legato}
 	)
 )

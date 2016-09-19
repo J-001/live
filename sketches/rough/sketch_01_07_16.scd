@@ -29,6 +29,7 @@ k.pm[0].source={SinOsc.kr().linlin(-1,1,0.1,1)};
 
 k.pm[1].source={SinOsc.kr(4).linlin(-1,1,0.5,1)*0.2};
 
+
 Pdef(\pmSynth,
 	Ppar(
 		{
@@ -40,7 +41,7 @@ Pdef(\pmSynth,
 				\lag,Prand((0..4)/8,inf),
 				\lfoRate,Pwhite(4.5,10.0),
 				\modRate,Pwhite(0.5,1.0),
-				\amp,k.pm[0],
+				\amp, 0.1,
 				\midinote, Prand(Scale.majorPentatonic.degrees,inf)+60+(12*rrand(-3,-3))+
 					Scale.aeolian.degrees+36,
 				\legato,1,

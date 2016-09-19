@@ -106,7 +106,7 @@ Pdef(\ping,
 		],1);
 );
 
-Ndef(\ping, Pdef(\ping))
+Ndef(\ping, Pdef(\ping)).play
 
 n[\s1].on_({ Ndef(\ping).quant_(8).play});
 n[\s1].off_({ Ndef(\ping).stop});
@@ -139,11 +139,12 @@ SynthDef(\delay, {|out=0|
 	Out.ar(out,sig*\amp.kr(1));
 }).add;
 
-Ndef('delay2', \delay)
+Ndef('delay2', \delay).play
 
 n[\knob3].cc_({|val| Ndef(\delay2).smap(\amp, val)});
 
-Ndef('ping').route('delay2')
+
+\delay2<<\ping
 
 //----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
@@ -178,7 +179,7 @@ Pdef(\synth1,
 			\synth1,
 			\legato,1,
 			\detune,1,
-			\amp,Pwhite(0.1,0.2),
+			\amp,Pwhite(0.1,0.2)  * 3,
 			\midinote,Pseq([
 				Prand({Scale.aeolian.degrees.choose}!2),
 				[Scale.aeolian.degrees.choose!3,0,3],
@@ -190,7 +191,7 @@ Pdef(\synth1,
 				[1,1,1,1,1],
 				[1,1],
 				[1,1,1,1,1]
-				].flat*1,inf)
+				].flat*1,inf) * 0.5
 		)
 );
 
@@ -249,7 +250,7 @@ Pdef(\synth2,
 
 Pdef(\synth2).clock=t;
 Pdef(\synth2).quant=16;
-Pdef(\synth2).play(t);
+Pdef(\synth2).play;
 Pdef(\synth2).stop;
 //----------------------------------------------------------------------------
 //----------------------------------------------------------------------------

@@ -43,7 +43,7 @@ LiveInput : Ndef {
 		SymbolConverter.addinputConvFunc('@', 
 			(
 				\test : {| input |
-					if (input.isKindOf(SimpleNumber)) { true};
+					if (input.isKindOf(SimpleNumber)) { true} {false};
 				}, 	
 				\type :	{| 	symbol |
 				 LiveInput(symbol).postln;

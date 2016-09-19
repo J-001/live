@@ -1,4 +1,5 @@
-Pdef(\radioNoise,
+"Pattern : ".post;
+Pdef(\radioNoise.postln,
 	Pmono(
 		\fracDustAsr,
 		\amp,0.7,
@@ -13,10 +14,12 @@ Pdef(\radioNoise,
 );
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-Pdef(\noise2clean)
+// Pdef(\noise2clean);
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-\noise2clean.pd = Pmono(
+"Pattern : ".post;
+Pdef(\noise2clean.postln, 
+	Pmono(
 		\fracDustAsr,
 		\amp,0.7,
 		\freq, Prand({rand(10000,15000)}!3,inf),
@@ -26,4 +29,5 @@ Pdef(\noise2clean)
 		\lag,0.1,
 		\mix,Pwhite(0.7,1.0),
 		\detune,0.0
-		)
+	)
+)
