@@ -106,7 +106,6 @@
 
 		if (obj.isKindOf(Pattern) or: obj.isKindOf(PatternProxy)) {
 			obj.quant_(this.quant);
-			this.quant.postln;
 		};
 		this.put(nil, obj, 0);
 
@@ -345,7 +344,7 @@
 	r{ this.rel }
 	t { this.trig }
 
-	q_ {|aQuant| this.quant = aQuant;^this}
+	q_ {|aQuant| this.quant = aQuant.asQuant;^this}
 	q { ^this.quant}
 	cl_ {|aClock| this.clock = aClock; ^this}
 	cl { ^this.clock}

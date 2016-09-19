@@ -56,3 +56,31 @@ a.current.current
 a.current.name
 
 a[\intro][7]
+
+
+
+Ndef(\radio).markQuant => quantize actions to Structure
+
+m[0].dur
+a.current => current mark
+a.next => next mark
+a.between => duration between marks
+
+a.onMark [func] => evaluate func on specified mark
+a.onNext [func] => evaluate func on next mark
+
+
+make marks
+play them
+
+//Offsetting
+not new mark just new ScheduledFunction
+
+{action}.throwNear(m[0], mul:, add: )
+
+mark.cleanThrow(action,dur,done,offset);
+{action}.cleanThrow(mark,dur,done,offset);
+
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+

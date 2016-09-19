@@ -16,7 +16,7 @@
 	);
 
 	x = nil; //quick nil
-	a = AreaPlan();
+	a = TimeStructure();
 
 	b = (); //BUFFERS
 	// b[\load] = {
