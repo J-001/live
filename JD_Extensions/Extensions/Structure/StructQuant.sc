@@ -1,35 +1,33 @@
-StructQuant : Quant {
-	classvar	default;
-	var <>quant, <>phase, <>timingOffset, <>timeStructure;
+StructQuant  {
+	// classvar	default;
+	var <>timeStructure, <>gridLevel, <>markOffset, <>beatOffset, <>timingOffset;
+	// *default { ^default ?? { StructQuant.new } }
+	// *default_ { |quant| default = quant.asQuant }
 
-	*default { ^default ?? { StructQuant.new } }
-	*default_ { |quant| default = quant.asQuant }
-
-	*new { |quant, phase, timingOffset, timeStructure| 
-		^super.newCopyArgs(quant, phase, timingOffset)
-		.timeStructure_(timeStructure) 
+	*new { |timeStructure, gridLevel, markOffset, beatOffset, timingOffset| 
+		^super.newCopyArgs(timeStructure, gridLevel, markOffset, beatOffset, timingOffset) 
 	}
 
-	nextTimeOnGrid { | clock |
-		^clock.nextTimeOnGrid(timeStructure.nextTimeOnGrid , 0);
+	nextTimeOnGrid { | tStructure |
+		var clock = tStructure.asClock.postln;
+		"Here third".postln;
+		tStructure.postln;
+		^clock.nextTimeOnGrid(
+			tStructure.nextTime( (gridLevel ? \lowest), (markOffset ? 0), (beatOffset ? 0)),
+				0
+			).postln;
 	}
 
 	asQuant { ^this.copy }
 
 	printOn { |stream|
-		stream << "StructQuant(" << quant;
-		if(phase.notNil) { stream << ", " << phase };
-		if(timingOffset.notNil) {
-			stream << ", ";
-			if(phase.isNil) {
-				stream << "nil, ";
-			};
-			stream << timingOffset
-		};
-		stream << ")"
+		stream << "StructQuant(" << timeStructure << "," 
+		 	<< gridLevel << "," 
+		 	<< markOffset << "," 
+		 	<< beatOffset << ")"
 	}
 
-	storeArgs { ^[quant, phase, timingOffset] }
+	storeArgs {|stream| ^[timeStructure, gridLevel, markOffset, beatOffset] }
 	
 }
 
@@ -38,11 +36,10 @@ StructQuant : Quant {
 
 	asQuant { 
 		if (this.at(0).class == TimeStructure){
-			^StructQuant(*(this[1..this.size-1])).timeStructure_(this.at(0));
+			^StructQuant(*this);
 		};
 			^Quant(*this) 
 	}
-
 }
 
 

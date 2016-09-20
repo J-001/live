@@ -39,18 +39,9 @@ Mark {
 		}
 	}
 
-	on_ {|aFunc|
+	onReach_ {|aFunc|
 		onMarkFuncs.add(aFunc)
 	}
-
-	fromTo {|onFunc, second, completionMessage|
-		var dur = this.grid.at(second).time - this.time;
-		dur.postln;
-		this.on_({onFunc.value(dur)});
-		completionMessage !? {
-			this.grid.at(second).on_({completionMessage.value(dur)})
-		};
-	}	
 
 	clear {
 		super.newCopyArgs(*(nil!5))
@@ -60,7 +51,7 @@ Mark {
 //--------------------------------------------------------------
 TimeGrid {
 	var <>name, <>timeArray, <>marks;
-	var <>plan, <>num;
+	var <>area;
 	var <>current;
 
 	*new {|name, timeArray|
@@ -71,18 +62,17 @@ TimeGrid {
 		marks = List.new;
 	}
 
-	makeMarks {|clock|
+	makeMarks {|clock, runningTime|
 		var previousMark;
 		timeArray.do{|addTime, n|
 			var time = if (previousMark.isNil) {
-					addTime
+					runningTime + addTime
 				} {
-					previousMark.time + addTime;
+					runningTime + previousMark.time + addTime;
 				};
-			var mark = Mark(clock, time, addTime).grid_(this).num_(n.postln);
+			var mark = Mark(clock, time, addTime).grid_(this).num_(n);
 			marks.add(mark);
 			previousMark = mark;
-
 		};
 		this.current = marks[0];
 	}
@@ -91,20 +81,28 @@ TimeGrid {
 		^timeArray.postln.sum;
 	}
 
-	next {|func|
+	next {
 		if ((current.num + 1) >= marks.size) {
-			// ^plan.next(func)		
+
 		} {
-			^marks.at(current.num + 1).on_(func);		
+			^marks.at(current.num + 1);		
 		}
 	}
 
-	after {|marks|
-		^marks.clipAt(current.num + marks);		
+	skip {| markOffset = 0|
+		if ((current.num + markOffset) >= marks.size) {
+			^nil;
+		} {
+			^marks.at(current.num + markOffset);		
+		}
 	}
 
 	at {|int|
 		^marks[int];
+	}
+
+	time {
+		^this.current.time;
 	}
 }
 //-----------------------------------------------------------------------
@@ -121,6 +119,8 @@ Area {
 		if (grid.isArray) {
 			grid = TimeGrid(grid[0], grid[1])
 		};
+
+		grid.area_(this);
 
 		if (lowest.isNil) {
 			lowest = grid;
@@ -153,7 +153,7 @@ Area {
 		grids = ();
 	}
 
-	make {|func|
+	make { | func |
 		func.value(this, dur)
 		
 	}
@@ -162,7 +162,7 @@ Area {
 //-----------------------------------------------------------------------
 TimeStructure {
 	var <>clock, <>areaSeq, <>areas;
-	var <>current;
+	var <>areaIndex;
 	var <>durs;
 	var <>zero, <>isRunning;
 
@@ -176,12 +176,12 @@ TimeStructure {
 		areaSeq = List.new;
 		areas = ();
 		durs = ();
-		zero = {this.clock.beats};
+		zero = this.clock.beats;
 		isRunning = false;
 	}
 
 	make {|...aAreas|
-
+		var runningTime = 0;
 		aAreas.do{|rawArea, n|
 			var area = rawArea;
 			if (area.isArray) {
@@ -189,24 +189,24 @@ TimeStructure {
 			};
 			areaSeq.add(area.name);
 			area.grids .do{ | grid |
-				grid.makeMarks(this.clock);
+				grid.makeMarks(this.clock, runningTime.postln);
 			};
+			runningTime = runningTime + area.dur;
 			areas[area.name] = area;
 			durs[area.name] = area.dur;
 		};
-
-		current = areaSeq.first;
+		areaIndex = 0;
 		active = this;
 	}
 
 	begin {
 		var previousArea;
 		// Begin On Next Integer Beat
-		clock.schedAbs( clock.nextTimeOnarea, {
+		clock.schedAbs( clock.nextTimeOnGrid, {
 			zero = clock.beats;
 			isRunning = true;
 
-			areaSeq.do{|name|
+			areaSeq.do{|name, n|
 				var area = areas[name];
 				var dur = if (previousArea.isNil) {
 					area.dur;
@@ -215,58 +215,72 @@ TimeStructure {
 				};
 
 				area.grids.do{|grid|
-					grid.marks(_.throw);
+					grid.marks.do(_.throw);
 				};	
 
 				clock.schedAbs(dur, {
-					current = area;
+					areaIndex = n;
 				});
 				previousArea = area;
 			}
 		})	
 	}
 
-	clear {
-		areaSeq = nil;
-		current = nil;
-		durs = nil;
-		isRunning = false;
-	}
-
-	at {| ... argList|
-		argList.do{|arg|
-			switch (argList.size)
-				{0}	{^nil}		//current mark
-				{1}	{}			//mark || area if is symbol
-				{2}	{}			//grid
-				{3} {};			//area
+	// at {| ... argList|
+	// 	argList.do{|arg|
+	// 		switch (argList.size)
+	// 			{0}	{^nil}		//current mark
+	// 			{1}	{}			//mark || area if is symbol
+	// 			{2}	{}			//grid
+	// 			{3} {};			//area
 			
-		}
+	// 	}
+	// }
+
+	current {
+		^areas[ areaSeq[ areaIndex ] ]
 	}
 
-	nextTimeOnGrid {
-		^ (zero + this.current.next.time)
+	nextArea {
+		^areas[ areaSeq[ areaIndex + 1] ]
 	}
 
-	asQuant { ^StructQuant(this)}
+	nextTime {|gridLvl = \lowest, markOffset = 0, beatOffset = 0|
+		var waitTime;
+		var grid;
+
+		if (gridLvl == \lowest) {
+			grid = this.current.lowest;
+		} {
+			grid = this.current.grids[gridLvl];
+		};
+		
+		waitTime = grid.skip(markOffset).time;
+		
+		^(zero + waitTime + beatOffset);
+	}
+
+	elapsed {
+		^(clock.beats - zero)
+	}
+
+	asQuant { ^StructQuant(this) }
+
+	play {|task, quant|
+		this.clock.schedAbs(quant.nextTimeOnGrid(this), task)
+	}
+
+	sched {|task, quant|
+		this.clock.sched(task, quant)
+	}
+
+	asClock { ^this.clock }
 
 }
 //-----------------------------------------------------------------------
 //---------------------EXTENSIONS----------------------------------------
 + Function {
-	
-	mark {|areaName, markNum|
-		var plan = TimeStructure.active;
-		var mark = plan.at(areaName, markNum);
-		^mark.on_(this);
-	}
 
-	fromTo {|firstNum, secondNum, completionMsg|
-		var plan = TimeStructure.active;
-		var first = plan.at(plan.current.name, firstNum);
-		first.postln.num.postln;
-		^first.fromTo(this, secondNum, completionMsg)
-	}
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
@@ -279,3 +293,8 @@ Section Shaping;
 area scope Controls,
 	Mark scope Controls;
 */
+
++ Clock {
+	asClock { ^this}
+
+}
