@@ -1,6 +1,6 @@
 (
 	s.boot;
-	t = TimeStructure();
+	t = TimeStructure().permanent_(true);
 	t.make(
 		Area(\intro, 32).make({|area, dur|
 			area.addN( 
@@ -16,15 +16,13 @@
 				);
 		})
 	);
-
-
 )
 
 
-
-
-p = Pbind(\freq,100).play(t, quant: [t,\beat]);
-q = Pbind(\freq,320).play(quant: [t,\bar]);
+t.isDefaultClock
+t.default_(true)
+p = Pbind(\freq,100).play(quant: [\bar]);
+q = Pbind(\freq,320).play(t, quant: [\bar]);
 
 
 Pbind(\freq,).play

@@ -14,10 +14,7 @@
 
 a.begin
 
-
-
 \radio.q_(0) @ Pdef(\radioNoise)
-
 
 \radio.p;
 

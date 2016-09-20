@@ -1,19 +1,17 @@
 StructQuant  {
 	// classvar	default;
-	var <>timeStructure, <>gridLevel, <>markOffset, <>beatOffset, <>timingOffset;
+	var<>gridLevel, <>markOffset, <>beatOffset, <>timingOffset;
 	// *default { ^default ?? { StructQuant.new } }
 	// *default_ { |quant| default = quant.asQuant }
 
-	*new { |timeStructure, gridLevel, markOffset, beatOffset, timingOffset| 
-		^super.newCopyArgs(timeStructure, gridLevel, markOffset, beatOffset, timingOffset) 
+	*new { | gridLevel, markOffset, beatOffset, timingOffset| 
+		^super.newCopyArgs( gridLevel, markOffset, beatOffset, timingOffset) 
 	}
 
-	nextTimeOnGrid { | tStructure |
-		var clock = tStructure.asClock.postln;
-		"Here third".postln;
-		tStructure.postln;
-		^clock.nextTimeOnGrid(
-			tStructure.nextTime( (gridLevel ? \lowest), (markOffset ? 0), (beatOffset ? 0)),
+	nextTimeOnGrid { | t_structure |
+		^t_structure.nextTimeOnGrid(
+			t_structure.nextTimeOnStructure(
+			 (gridLevel ? \lowest), (markOffset ? 0), (beatOffset ? 0)),
 				0
 			).postln;
 	}
@@ -21,13 +19,12 @@ StructQuant  {
 	asQuant { ^this.copy }
 
 	printOn { |stream|
-		stream << "StructQuant(" << timeStructure << "," 
-		 	<< gridLevel << "," 
+		stream << "StructQuant(" << gridLevel << "," 
 		 	<< markOffset << "," 
 		 	<< beatOffset << ")"
 	}
 
-	storeArgs {|stream| ^[timeStructure, gridLevel, markOffset, beatOffset] }
+	storeArgs {|stream| ^[ gridLevel, markOffset, beatOffset] }
 	
 }
 
@@ -35,10 +32,20 @@ StructQuant  {
  + SequenceableCollection {
 
 	asQuant { 
-		if (this.at(0).class == TimeStructure){
+		if (this.at(0).class == Symbol){
 			^StructQuant(*this);
 		};
+		if (this.at(0).class == TimeStructure){
+			^StructQuant(*(this[1..this.size-1]));
+		};
 			^Quant(*this) 
+	}
+}
+
+
++ Symbol {
+	asQuant {
+		^StructQuant(this)
 	}
 }
 

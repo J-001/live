@@ -160,28 +160,24 @@ Area {
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-TimeStructure {
-	var <>clock, <>areaSeq, <>areas;
+TimeStructure : TempoClock {
+
+	var <>areaSeq, <>areas;
 	var <>areaIndex;
 	var <>durs;
 	var <>zero, <>isRunning;
-
-	classvar <>active;
-
-	*new {|clock|
-		^super.newCopyArgs(clock ? TempoClock.default.permanent_(true)).init; 
-	}
-
-	init {
-		areaSeq = List.new;
-		areas = ();
-		durs = ();
-		zero = this.clock.beats;
-		isRunning = false;
-	}
+	var <>isDefaultClock;
 
 	make {|...aAreas|
 		var runningTime = 0;
+
+		areaSeq = List.new;
+		areas = ();
+		durs = ();
+		zero = this.beats;
+		isRunning = false;
+		isDefaultClock = false;
+
 		aAreas.do{|rawArea, n|
 			var area = rawArea;
 			if (area.isArray) {
@@ -189,21 +185,20 @@ TimeStructure {
 			};
 			areaSeq.add(area.name);
 			area.grids .do{ | grid |
-				grid.makeMarks(this.clock, runningTime.postln);
+				grid.makeMarks(this, runningTime.postln);
 			};
 			runningTime = runningTime + area.dur;
 			areas[area.name] = area;
 			durs[area.name] = area.dur;
 		};
 		areaIndex = 0;
-		active = this;
 	}
 
 	begin {
 		var previousArea;
 		// Begin On Next Integer Beat
-		clock.schedAbs( clock.nextTimeOnGrid, {
-			zero = clock.beats;
+		this.schedAbs( this.nextTimeOnGrid, {
+			zero = this.beats;
 			isRunning = true;
 
 			areaSeq.do{|name, n|
@@ -218,7 +213,7 @@ TimeStructure {
 					grid.marks.do(_.throw);
 				};	
 
-				clock.schedAbs(dur, {
+				this.schedAbs(dur, {
 					areaIndex = n;
 				});
 				previousArea = area;
@@ -244,8 +239,8 @@ TimeStructure {
 	nextArea {
 		^areas[ areaSeq[ areaIndex + 1] ]
 	}
-
-	nextTime {|gridLvl = \lowest, markOffset = 0, beatOffset = 0|
+	//CALLED IN STRUCT QUANT
+	nextTimeOnStructure {|gridLvl = \lowest, markOffset = 0, beatOffset = 0|
 		var waitTime;
 		var grid;
 
@@ -261,40 +256,52 @@ TimeStructure {
 	}
 
 	elapsed {
-		^(clock.beats - zero)
+		^(this.beats - zero)
 	}
 
-	asQuant { ^StructQuant(this) }
+	asQuant { ^StructQuant() }
+	
+	//CLOCK Methods
+	
+	asClock { ^this }
 
 	play {|task, quant|
-		this.clock.schedAbs(quant.nextTimeOnGrid(this), task)
+		this.schedAbs(quant.nextTimeOnGrid(this), task)
 	}
 
-	sched {|task, quant|
-		this.clock.sched(task, quant)
+	timeToNextBeat { arg quant = 1.0; // logical time to next beat
+		^quant.nextTimeOnGrid(this) - this.beats
 	}
 
-	asClock { ^this.clock }
+	default_ { | bool |
+		isDefaultClock = bool;
+		if (bool) {
+			TempoClock.default = this;
+		} {
+			TempoClock.default = TempoClock.new;
+		}
+	}
+
+	default {
+		^TempoClock.default
+	}
 
 }
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+// StructClock : TempoClock {
+// 	var <>tStructure;
+
+// 	play {|task, quant|
+// 		this.schedAbs(quant.nextTimeOnGrid(tStructure), task)
+// 	}
+
+// 	timeToNextBeat { arg quant=1.0; // logical time to next beat
+// 		^quant.nextTimeOnGrid(tStructure) - this.beats
+// 	}
+// }
 //-----------------------------------------------------------------------
 //---------------------EXTENSIONS----------------------------------------
-+ Function {
-
-}
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-
-
-/*
-TO DO: 
-
-Section Shaping;
-area scope Controls,
-	Mark scope Controls;
-*/
-
 + Clock {
 	asClock { ^this}
-
 }
