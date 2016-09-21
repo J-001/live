@@ -4,20 +4,17 @@ StructQuant  {
 	// *default { ^default ?? { StructQuant.new } }
 	// *default_ { |quant| default = quant.asQuant }
 
-	*new { | gridLevel, markOffset, beatOffset, timingOffset| 
+	*new { | gridLevel, markOffset, beatOffset, timingOffset = 0| 
 		^super.newCopyArgs( gridLevel, markOffset, beatOffset, timingOffset) 
 	}
 
 	nextTimeOnGrid { | t_structure |
-		^t_structure.nextTimeOnGrid(
-			t_structure.nextTimeOnStructure(
-			 (gridLevel ? \lowest), (markOffset ? 0), (beatOffset ? 0)),
-				0
-			).postln;
+			^t_structure.nextTimeOnStructure(
+			 (gridLevel ? \lowest), (markOffset ? 0), (beatOffset ? 0))
 	}
 
-	asQuant { ^this.copy }
-
+	asQuant { ^this.copy 
+}
 	printOn { |stream|
 		stream << "StructQuant(" << gridLevel << "," 
 		 	<< markOffset << "," 
@@ -27,8 +24,6 @@ StructQuant  {
 	storeArgs {|stream| ^[ gridLevel, markOffset, beatOffset] }
 	
 }
-
-
  + SequenceableCollection {
 
 	asQuant { 

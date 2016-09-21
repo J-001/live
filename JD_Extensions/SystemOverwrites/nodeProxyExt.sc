@@ -981,6 +981,12 @@
 			var item = pairs[i + 1];
 			filteredPairs[i + 0] = key;
 
+			[\ts, \grid, \area].do{|ts_key|
+				if (key == ts_key) {
+					item = [item]
+				} 
+			};
+
 			if (item.class == PatternProxy) {
 				if ([\type, \instrument].contains(key)) {
 					filteredPairs[i + 1] = PatternProxy.new(item)
