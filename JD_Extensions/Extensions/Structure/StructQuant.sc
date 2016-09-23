@@ -1,29 +1,32 @@
 StructQuant  {
 	// classvar	default;
-	var<>gridLevel, <>markOffset, <>beatOffset, <>timingOffset;
+	var <>area, <>gridLevel, <>markOffset, <>beatOffset, <>timingOffset;
 	// *default { ^default ?? { StructQuant.new } }
 	// *default_ { |quant| default = quant.asQuant }
 
-	*new { | gridLevel, markOffset, beatOffset, timingOffset = 0| 
-		^super.newCopyArgs( gridLevel, markOffset, beatOffset, timingOffset) 
+	*new { | area, gridLevel, markOffset, beatOffset, timingOffset = 0| 
+		^super.newCopyArgs( area, gridLevel, markOffset, beatOffset, timingOffset) 
 	}
 
 	nextTimeOnGrid { | t_structure |
 			^t_structure.nextTimeOnStructure(
-			 (gridLevel ? \lowest), (markOffset ? 0), (beatOffset ? 0))
+			 area, (gridLevel ? \lowest), (markOffset ? 0), (beatOffset ? 0))
 	}
 
-	asQuant { ^this.copy 
-}
+	asQuant { ^this.copy }
+
 	printOn { |stream|
-		stream << "StructQuant(" << gridLevel << "," 
-		 	<< markOffset << "," 
-		 	<< beatOffset << ")"
+		stream << "StructQuant(" << area << "," 
+			<< gridLevel << "," 
+		 	<< (markOffset ? 0) << "," 
+		 	<< (beatOffset ? 0) << ")"
 	}
 
-	storeArgs {|stream| ^[ gridLevel, markOffset, beatOffset] }
+	storeArgs {|stream| ^[area, gridLevel, markOffset, beatOffset] }
 	
 }
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
  + SequenceableCollection {
 
 	asQuant { 
@@ -36,11 +39,15 @@ StructQuant  {
 			^Quant(*this) 
 	}
 }
-
-
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 + Symbol {
 	asQuant {
-		^StructQuant(this)
+		var words = this.asWords(".","_");
+		words = words.collect{|word|
+			word.asSymbol
+		};
+		^StructQuant(*words)
 	}
 }
 

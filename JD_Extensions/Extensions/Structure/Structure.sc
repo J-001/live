@@ -1,165 +1,155 @@
-Mark {
-	var <>clock, <>time, <>dur,
-	<>beatZero, <>onMarkFuncs, <>grid, <>num,
-	<>reached;
+// Mark {
+// 	var <>clock, <>time, <>dur,
+// 	<>beatZero, <>onMarkFuncs, <>grid, <>num,
+// 	<>reached;
 
 
-	*new {|clock, time, dur|
-		^super.newCopyArgs(clock ? TempoClock.default.permanent_(true), time, dur).init;
-		
-	}
+// 	*new {|clock, time, dur|
+// 		^super.newCopyArgs(clock ? TempoClock.default.permanent_(true), time, dur).init;
+// 	}
 
-	init {
-		onMarkFuncs = List.new;
-		reached = false;
-	}
+// 	init {
+// 		onMarkFuncs = List.new;
+// 		reached = false;
+// 	}
 
-	throw {
-		beatZero = clock.beats;
-		clock.schedAbs( (clock.beats + time), {
-			onMarkFuncs.do(_.value);
-			reached = true;
-			grid.current = this;
-			nil;
-		});
-	}
+// 	throw {
+// 		beatZero = clock.beats;
+// 		clock.schedAbs( (clock.beats + time), {
+// 			onMarkFuncs.do(_.value);
+// 			reached = true;
+// 			grid.current = this;
+// 			nil;
+// 		});
+// 	}
 
-	until {|mul = 1, add = 0|
-		if (reached) {
-			^nil;
-		}{
-			^((time - (clock.beats - beatZero)) * mul) + add
-		}
-	}
+// 	until {|mul = 1, add = 0|
+// 		if (reached) {
+// 			^nil;
+// 		}{
+// 			^((time - (clock.beats - beatZero)) * mul) + add
+// 		}
+// 	}
 
-	onReach_ {|aFunc|
-		onMarkFuncs.add(aFunc)
-	}
+// 	onReach_ {|aFunc|
+// 		onMarkFuncs.add(aFunc)
+// 	}
 
-	clear {
-		super.newCopyArgs(*(nil!5))
-	}
-}
+// 	clear {
+// 		super.newCopyArgs(*(nil!5))
+// 	}
+// }
 //--------------------------------------------------------------
 //--------------------------------------------------------------
 TimeGrid {
-	var <>name, <>timeArray, <>marks;
+	var <>durs, <>times, <>rout;
 	var <>area;
-	var <>current;
+	var <>current, <>mark;
 
-	*new {|name, timeArray|
-		^super.newCopyArgs(name, timeArray).init;
+	*new {|durs|
+		^super.newCopyArgs( [0] ++ durs ).init;
 	}	
 
 	init {
-		marks = List.new;
+		times = [];
+		mark = 0;
 	}
 
-	makeMarks {|clock, runningTime|
-		var previousMark;
-		timeArray.do{|addTime, n|
-			var time = if (previousMark.isNil) {
-					runningTime + addTime
+	makeMarks {|clock, startTime|
+
+		durs.do{ | dur, n |
+			var time = if (times[0].isNil) {
+					startTime + dur
 				} {
-					runningTime + previousMark.time + addTime;
+					times[n - 1] + dur;
 				};
-			var mark = Mark(clock, time, addTime).grid_(this).num_(n);
-			marks.add(mark);
-			previousMark = mark;
+			times = times.add(time);
 		};
-		this.current = marks[0];
+
+		rout = Routine({
+			durs.do{|dur, n|
+				mark = n;
+				dur.wait;
+			}
+		}).clock_(clock);
+	}
+
+	throw {
+		rout.play;
 	}
 
 	dur {
-		^timeArray.sum;
+		^durs.sum;
+	}
+
+	end {
+		^times.last
 	}
 
 	next {
-		if ((current.num + 1) >= marks.size) {
+		if (( mark + 1) >= durs.size) {
 
 		} {
-			^marks.at(current.num + 1);		
+			^times.at(mark + 1);		
 		}
 	}
 
 	skip {| markOffset = 0|
-		if ((current.num + markOffset) >= marks.size) {
+		if ((mark + markOffset) >= durs.size) {
 			^nil;
 		} {
-			^marks.at(current.num + markOffset);		
+			// times.postln;
+			^times.at(mark + markOffset);		
 		}
 	}
 
-	at {|int|
-		^marks[int];
+	until {
+
 	}
 
+	at {|int|
+		^durs[int];
+	}
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 Area {
-	var <>name, <>dur, <>grids, <>clock, <>plan;
-	var <>lowest;
+	var <>dur, <>start, <>grids, <>clock, <>plan;
+	var <>completed;
 
-	*new {|name, dur|
-		^super.newCopyArgs(name, dur).init;
-	}
-	// No Need for Grids to Be Ordered
-	add {|grid|
-		if (grid.isArray) {
-			grid = TimeGrid(grid[0], grid[1])
-		};
-
-		grid.area_(this);
-
-		if (lowest.isNil) {
-			lowest = grid;
-		} {
-			if (lowest.marks.size < grid.marks.size) {
-				lowest = grid;
-			}
-		};
-		if (dur.isNil) {
-			dur = grid.dur;
-			grids[grid.name] = grid;
-		} {
-			if (dur != grid.dur) {
-				("Not required duration of:" + dur.asString).postln;
-			}{
-				grids[grid.name] = grid;
-			}
-		};
+	*new {|dur, start|
+		^super.newCopyArgs(dur, start).init;
 	}
 
-	addN {| ... gridList|
-		if (gridList.size > 0) {
-			gridList.do{|grid|
-				this.add(grid);
-			}
-		}
-	}
-	//make
 	init {
 		grids = ();
+	}
+
+	make { | func |
+		grids.push;
+		func.value(this, dur);
+		currentEnvironment.pop;
+
+		grids.getPairs.pairsDo{ | key, val | 
+			this.addUniqueMethod(key, { val })
+		}
 	}
 
 	grid { | gridKey |
 		^(grids[gridKey] ? this.lowest)
 	}
 
-	make { | func |
-		func.value(this, dur)
-	}
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 TimeStructure : TempoClock {
 
 	var <>areaSeq, <>areas;
-	var <>areaIndex;
+	var <>defaultArea, <>defaultGrid;
 	var <>durs, <>runningDur;
 	var <>zero, <>isRunning;
 	var <>isDefaultClock;
+/*
 
 	make {|...aAreas|
 		var runningTime = 0;
@@ -176,141 +166,126 @@ TimeStructure : TempoClock {
 
 		aAreas.do{ | rawArea, n |
 			var area = rawArea;
-			if (area.isArray) {
-				area = Area(area[0], area[1]);
-			};
+
 			areaSeq.add(area.name);
 
 			area.grids.do{ | grid |
-				grid.makeMarks(this, runningTime);
+				grid.makeMarks(this, area.start);
 			};
-			runningTime = runningTime + area.dur;
+
 			areas[area.name] = area;
 			durs[area.name] = area.dur;
 		};
 		areaIndex = 0;
 	}
+*/  
+//UTILS
+
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+	make { | func |
+		areaSeq = areaSeq ? List.new;
+		areas = areas ? ();
+		zero = zero ? this.beats;
+
+		areas.push;
+		func.value;
+		currentEnvironment.pop;
+
+		areas.do{|area|
+			area.grids.do{|grid|
+				grid.makeMarks(this, area.start)
+			}
+		};
+
+		areas.getPairs.pairsDo{ | key, val | 
+			this.addUniqueMethod(key, { val })
+		}
+	}
 
 	begin {
-		var previousArea;
 		// Begin On Next Integer Beat
 		this.schedAbs( this.nextTimeOnGrid, {
 			zero = this.beats;
 			isRunning = true;
 
-			areaSeq.do{ | name, n |
-				var area = areas[name];
-
-				var dur = if (previousArea.isNil.postln) {
-					area.dur;
-				} {
-					area.dur + previousArea.dur
-				};
-
-				area.grids.do{ | grid |
-					grid.marks.postln.do( _.throw );
-				};	
-				this.postln;
-
-				areaIndex.postln;
-				this.schedAbs( ( dur ), {
-					areaIndex = n;
+			areas.do{ | area |
+				this.schedAbs(zero + area.start, {
+					area.grids.do{ | grid |
+						grid.throw
+					};
 					nil;
 				});
-
-				previousArea = area;
 			};
-			nil
+			nil;
 		})	
 	}
 
-	remaining { | areaKey, gridKey |
+	remaining { | ... argList |
 		//get current mark in grid and return array of durations until next area
-		var area = areas[areaKey] ? this.current;
-		var grid = area.grids[gridKey] ? area.lowest;
-		var marks = grid.marks;
-		var n = grid.current.num;
-		var t_remaining = grid.timeArray.copy[n .. grid.timeArray.size];
+		var input = if (argList[0].asWords("_",".").size > 1) {
+				argList[0].asWords("_",".")
+			} {
+				argList
+			};
+		var area = areas[input[0].asSymbol];
+		var grid = area.grids[input[1].asSymbol];
+		var mark = grid.mark;
+		var t_remaining = grid.durs.copy[ mark + 1 .. grid.durs.size - 1];
 		^t_remaining
 	}
+	
+	// ON-THE-FLY AREA CONSTRUCTION
+	throwArea { | ref_area, attach, offset, area, dur |
+		var start;
+		if (attach.isNil) {
+			start = ref_area.dur;
+		};
+		if (attach == \end) {
+			start = ref_area.end;
+		};
+		if (attach == \start) {
+			start = ref_area.start;
+		};
 
-	//Access
-	at { | ... argList |
-		switch (argList.size)
-			{0}	{ ^this.current.lowest.current }
-			{1}	{ 
-				if (argList[0].isKindOf(Symbol)) {
-					^this.current.grid( argList[0] )
-				} {
-					^this.current.lowest.marks[ argList[0] ]
-				}
-			}
-			{2}	{ 
-				if (argList[1].isKindOf(Symbol)) {
-					^this
-					.area( argList[0] )
-					.grid( argList[1] ) 
-				} {
-					^this.current
-					.grid( argList[0] )
-					.marks[ argList[1] ] 
-				}
-			}
-			{3}	{ 
-				^this
-				.area( argList[0] )
-				.grid( argList[1] )
-				.marks[ argList[2] ] 
-			}
-	}
-	//Mark
-	currentMark { | grid |
-		this.current.grids[grid].current
+		areas[area] = Area(dur, start)
 	}
 
-	time { | ... argList |
-		var mark = this.at(*argList);
-		if (mark.class == Mark) {
-			^(mark.time)
-		}; 
-	}
-	//Grid
-
-	onNext {|lvl, func|
-		this.schedAbs( this.nextTimeOnStructure(lvl), {func.value; nil})
-	}
-	//AREA
-
-	area {|areaKey|
-		^(areas[areaKey] ? this.current)
-	}
-	current {
-		^areas[ areaSeq[ areaIndex ] ]
+	// REBUILD
+	executeOn { | func, quant |
+		this.schedAbs( 
+			quant.asQuant.nextTimeOnGrid(this),
+			{func.value; nil} 
+		)
 	}
 
-	nextArea {
-		^areas[ areaSeq[ areaIndex + 1] ]
+	xon { | ... argList |
+		this.executeOn(*argList)
 	}
 
-	//CALLED IN STRUCT QUANT
-	nextTimeOnStructure {|gridLvl = \lowest, markOffset = 1, beatOffset = 0|
+	//SETTINGS
+	defaults{ | area, grid |
+		default
+	}
+	// QUANT
+	nextTimeOnStructure { | area, gridLvl = \lowest, markOffset, beatOffset = 0|
 		var waitTime;
 		var grid;
 
 		if (gridLvl == \lowest) {
-			grid = this.current.lowest;
+			grid = this.areas[area].lowest;
 		} {
-			grid = this.current.grids[gridLvl];
+			grid = this.areas[area].grids[gridLvl];
 		};
-		waitTime = grid.skip(markOffset).time;
 
-		^(zero + waitTime + beatOffset);
+		waitTime = grid.skip((markOffset ? 1));
+
+		^(zero + waitTime + (beatOffset ? 0));
 	}
 
 	asQuant { ^StructQuant() }
 	
-	//CLOCK Methods
-	
+	//CLOCK 
 	asClock { ^this }
 
 	play {| task, quant |
@@ -321,7 +296,7 @@ TimeStructure : TempoClock {
 		^quant.nextTimeOnGrid(this) - this.beats
 	}
 
-	default_ { | bool |
+	defaultClock_ { | bool |
 		isDefaultClock = bool;
 		if (bool) {
 			TempoClock.default = this;
@@ -330,7 +305,7 @@ TimeStructure : TempoClock {
 		}
 	}
 
-	default {
+	defaultClock {
 		^TempoClock.default
 	}
 
